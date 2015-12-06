@@ -67,9 +67,9 @@
 ;#define p_3 PINB.2
 ;
 ;flash unsigned char  seg[10] = {seg_g, seg_a+seg_d+seg_e+seg_f+seg_g, seg_c+seg_f, seg_e+seg_f, seg_a+seg_d+seg_e, seg_b ...
-;unsigned int a,   m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
+;unsigned int a, sum, m, pm,  m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
 ;unsigned long timer, timer2;
-;
+;unsigned char kol;
 ;// Timer 0 overflow interrupt service routine
 ;interrupt [TIM0_OVF] void timer0_ovf_isr(void)
 ; 0000 0033 {
@@ -546,33 +546,34 @@
 ;PCODE: $00000106 VOL: 0
 ;PCODE: $00000107 VOL: 0
 ; 0000 010C 
-; 0000 010D while (1)
+; 0000 010D         kol = 10;
 ;PCODE: $00000108 VOL: 0
-; 0000 010E       {
-; 0000 010F       // Place your code here
-; 0000 0110         m100 = read_adc(0);
 ;PCODE: $00000109 VOL: 0
+; 0000 010E while (1)
 ;PCODE: $0000010A VOL: 0
+; 0000 010F       {
+; 0000 0110       // Place your code here
+; 0000 0111         m100 = read_adc(0);
 ;PCODE: $0000010B VOL: 0
-; 0000 0111         m90 = read_adc(1);
 ;PCODE: $0000010C VOL: 0
 ;PCODE: $0000010D VOL: 0
+; 0000 0112         m90 = read_adc(1);
 ;PCODE: $0000010E VOL: 0
-; 0000 0112         m80 = read_adc(2);
 ;PCODE: $0000010F VOL: 0
 ;PCODE: $00000110 VOL: 0
+; 0000 0113         m80 = read_adc(2);
 ;PCODE: $00000111 VOL: 0
-; 0000 0113         m70 = read_adc(3);
 ;PCODE: $00000112 VOL: 0
 ;PCODE: $00000113 VOL: 0
+; 0000 0114         m70 = read_adc(3);
 ;PCODE: $00000114 VOL: 0
-; 0000 0114         m60 = read_adc(4);
 ;PCODE: $00000115 VOL: 0
 ;PCODE: $00000116 VOL: 0
+; 0000 0115         m60 = read_adc(4);
 ;PCODE: $00000117 VOL: 0
-; 0000 0115         if((pm100 - 20) > m100) a = 100; else pm100 = m100;
 ;PCODE: $00000118 VOL: 0
 ;PCODE: $00000119 VOL: 0
+; 0000 0116         if((pm100 - 20) > m100) a = 100; else pm100 = m100;
 ;PCODE: $0000011A VOL: 0
 ;PCODE: $0000011B VOL: 0
 ;PCODE: $0000011C VOL: 0
@@ -582,9 +583,9 @@
 ;PCODE: $00000120 VOL: 0
 ;PCODE: $00000121 VOL: 0
 ;PCODE: $00000122 VOL: 0
-; 0000 0116         if((pm90 - 20) > m90) { if(a==100) a= 95; else a = 90; } else pm90 = m90;
 ;PCODE: $00000123 VOL: 0
 ;PCODE: $00000124 VOL: 0
+; 0000 0117         if((pm90 - 20) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
 ;PCODE: $00000125 VOL: 0
 ;PCODE: $00000126 VOL: 0
 ;PCODE: $00000127 VOL: 0
@@ -603,9 +604,9 @@
 ;PCODE: $00000134 VOL: 0
 ;PCODE: $00000135 VOL: 0
 ;PCODE: $00000136 VOL: 0
-; 0000 0117         if((pm80 - 20) > m80) { if(a==90) a= 85; else a = 80; } else pm80 = m80;
 ;PCODE: $00000137 VOL: 0
 ;PCODE: $00000138 VOL: 0
+; 0000 0118         if((pm80 - 20) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
 ;PCODE: $00000139 VOL: 0
 ;PCODE: $0000013A VOL: 0
 ;PCODE: $0000013B VOL: 0
@@ -623,10 +624,10 @@
 ;PCODE: $00000147 VOL: 0
 ;PCODE: $00000148 VOL: 0
 ;PCODE: $00000149 VOL: 0
-; 0000 0118         if((pm70 - 20) > m70) { if(a==80) a= 75; else a = 70; } else pm70 = m70;
 ;PCODE: $0000014A VOL: 0
 ;PCODE: $0000014B VOL: 0
 ;PCODE: $0000014C VOL: 0
+; 0000 0119         if((pm70 - 20) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
 ;PCODE: $0000014D VOL: 0
 ;PCODE: $0000014E VOL: 0
 ;PCODE: $0000014F VOL: 0
@@ -643,11 +644,11 @@
 ;PCODE: $0000015A VOL: 0
 ;PCODE: $0000015B VOL: 0
 ;PCODE: $0000015C VOL: 0
-; 0000 0119         if((pm60 - 20) > m60) { if(a==70) a= 65; else a = 60; } else pm60 = m60;
 ;PCODE: $0000015D VOL: 0
 ;PCODE: $0000015E VOL: 0
 ;PCODE: $0000015F VOL: 0
 ;PCODE: $00000160 VOL: 0
+; 0000 011A         if((pm60 - 20) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
 ;PCODE: $00000161 VOL: 0
 ;PCODE: $00000162 VOL: 0
 ;PCODE: $00000163 VOL: 0
@@ -663,35 +664,242 @@
 ;PCODE: $0000016D VOL: 0
 ;PCODE: $0000016E VOL: 0
 ;PCODE: $0000016F VOL: 0
-; 0000 011A         if (a > 0)
 ;PCODE: $00000170 VOL: 0
 ;PCODE: $00000171 VOL: 0
 ;PCODE: $00000172 VOL: 0
-; 0000 011B         {
-; 0000 011C             timer2 = 0;
 ;PCODE: $00000173 VOL: 0
+; 0000 011B         if (a > 0)
 ;PCODE: $00000174 VOL: 0
-; 0000 011D             while (timer2 < 70000) vivod(a);
 ;PCODE: $00000175 VOL: 0
 ;PCODE: $00000176 VOL: 0
+; 0000 011C         {
+; 0000 011D             timer2 = 0;
 ;PCODE: $00000177 VOL: 0
 ;PCODE: $00000178 VOL: 0
+; 0000 011E             while (timer2 < 100000) vivod(a);
 ;PCODE: $00000179 VOL: 0
 ;PCODE: $0000017A VOL: 0
 ;PCODE: $0000017B VOL: 0
 ;PCODE: $0000017C VOL: 0
-; 0000 011E a = 0;
 ;PCODE: $0000017D VOL: 0
-; 0000 011F             PORTD = 255;
 ;PCODE: $0000017E VOL: 0
 ;PCODE: $0000017F VOL: 0
-; 0000 0120         }
-; 0000 0121       }
 ;PCODE: $00000180 VOL: 0
+; 0000 0120 if (a==100)
 ;PCODE: $00000181 VOL: 0
 ;PCODE: $00000182 VOL: 0
-; 0000 0122 }
 ;PCODE: $00000183 VOL: 0
+; 0000 0121 {
+; 0000 0122 pm = pm100;
 ;PCODE: $00000184 VOL: 0
 ;PCODE: $00000185 VOL: 0
+; 0000 0123 m = m100;
+;PCODE: $00000186 VOL: 0
+;PCODE: $00000187 VOL: 0
+; 0000 0124 } ;
+;PCODE: $00000188 VOL: 0
+; 0000 0125 if (a==80)
+;PCODE: $00000189 VOL: 0
+;PCODE: $0000018A VOL: 0
+;PCODE: $0000018B VOL: 0
+; 0000 0126 {
+; 0000 0127 pm = pm90;
+;PCODE: $0000018C VOL: 0
+;PCODE: $0000018D VOL: 0
+; 0000 0128 m = m90;
+;PCODE: $0000018E VOL: 0
+;PCODE: $0000018F VOL: 0
+; 0000 0129 };
+;PCODE: $00000190 VOL: 0
+; 0000 012A if (a==60)
+;PCODE: $00000191 VOL: 0
+;PCODE: $00000192 VOL: 0
+;PCODE: $00000193 VOL: 0
+; 0000 012B {
+; 0000 012C pm = pm80;
+;PCODE: $00000194 VOL: 0
+;PCODE: $00000195 VOL: 0
+; 0000 012D m = m80;
+;PCODE: $00000196 VOL: 0
+;PCODE: $00000197 VOL: 0
+; 0000 012E } ;
+;PCODE: $00000198 VOL: 0
+; 0000 012F if(a==40)
+;PCODE: $00000199 VOL: 0
+;PCODE: $0000019A VOL: 0
+;PCODE: $0000019B VOL: 0
+; 0000 0130 {
+; 0000 0131 pm = pm70;
+;PCODE: $0000019C VOL: 0
+;PCODE: $0000019D VOL: 0
+; 0000 0132 m = m70;
+;PCODE: $0000019E VOL: 0
+;PCODE: $0000019F VOL: 0
+; 0000 0133 };
+;PCODE: $000001A0 VOL: 0
+; 0000 0134 if(a==20)
+;PCODE: $000001A1 VOL: 0
+;PCODE: $000001A2 VOL: 0
+;PCODE: $000001A3 VOL: 0
+; 0000 0135 {
+; 0000 0136 pm = pm60;
+;PCODE: $000001A4 VOL: 0
+;PCODE: $000001A5 VOL: 0
+; 0000 0137 m = m60;
+;PCODE: $000001A6 VOL: 0
+;PCODE: $000001A7 VOL: 0
+; 0000 0138 }
+; 0000 0139             r_1 = 0;
+;PCODE: $000001A8 VOL: 0
+;PCODE: $000001A9 VOL: 0
+;PCODE: $000001AA VOL: 0
+; 0000 013A             r_2 = 0;
+;PCODE: $000001AB VOL: 0
+;PCODE: $000001AC VOL: 0
+; 0000 013B             PORTD = 255;
+;PCODE: $000001AD VOL: 0
+;PCODE: $000001AE VOL: 0
+; 0000 013C             r_3 = 0;
+;PCODE: $000001AF VOL: 0
+;PCODE: $000001B0 VOL: 0
+; 0000 013D 
+; 0000 013E                 timer2 = 0;
+;PCODE: $000001B1 VOL: 0
+;PCODE: $000001B2 VOL: 0
+; 0000 013F                 while (timer2 < 50000) vivod(pm-24);
+;PCODE: $000001B3 VOL: 0
+;PCODE: $000001B4 VOL: 0
+;PCODE: $000001B5 VOL: 0
+;PCODE: $000001B6 VOL: 0
+;PCODE: $000001B7 VOL: 0
+;PCODE: $000001B8 VOL: 0
+;PCODE: $000001B9 VOL: 0
+;PCODE: $000001BA VOL: 0
+;PCODE: $000001BB VOL: 0
+; 0000 0140 PORTB.0 = 0;
+;PCODE: $000001BC VOL: 0
+;PCODE: $000001BD VOL: 0
+; 0000 0141             r_2 = 0;
+;PCODE: $000001BE VOL: 0
+;PCODE: $000001BF VOL: 0
+; 0000 0142             PORTD = 255;
+;PCODE: $000001C0 VOL: 0
+;PCODE: $000001C1 VOL: 0
+; 0000 0143             r_3 = 0;
+;PCODE: $000001C2 VOL: 0
+;PCODE: $000001C3 VOL: 0
+; 0000 0144                 timer2 = 0;
+;PCODE: $000001C4 VOL: 0
+;PCODE: $000001C5 VOL: 0
+; 0000 0145                 while (timer2 < 10000);
+;PCODE: $000001C6 VOL: 0
+;PCODE: $000001C7 VOL: 0
+;PCODE: $000001C8 VOL: 0
+;PCODE: $000001C9 VOL: 0
+;PCODE: $000001CA VOL: 0
+;PCODE: $000001CB VOL: 0
+; 0000 0146                 timer2 = 0;
+;PCODE: $000001CC VOL: 0
+;PCODE: $000001CD VOL: 0
+; 0000 0147                 while (timer2 < 50000) vivod(m-24);
+;PCODE: $000001CE VOL: 0
+;PCODE: $000001CF VOL: 0
+;PCODE: $000001D0 VOL: 0
+;PCODE: $000001D1 VOL: 0
+;PCODE: $000001D2 VOL: 0
+;PCODE: $000001D3 VOL: 0
+;PCODE: $000001D4 VOL: 0
+;PCODE: $000001D5 VOL: 0
+;PCODE: $000001D6 VOL: 0
+; 0000 0149 PORTB.0 = 0;
+;PCODE: $000001D7 VOL: 0
+;PCODE: $000001D8 VOL: 0
+; 0000 014A             r_2 = 0;
+;PCODE: $000001D9 VOL: 0
+;PCODE: $000001DA VOL: 0
+; 0000 014B             PORTD = 255;
+;PCODE: $000001DB VOL: 0
+;PCODE: $000001DC VOL: 0
+; 0000 014C             r_3 = 0;
+;PCODE: $000001DD VOL: 0
+;PCODE: $000001DE VOL: 0
+; 0000 014D 
+; 0000 014E //++++++++
+; 0000 014F             sum += a;
+;PCODE: $000001DF VOL: 0
+;PCODE: $000001E0 VOL: 0
+; 0000 0150             a = 0;
+;PCODE: $000001E1 VOL: 0
+; 0000 0151             kol--;
+;PCODE: $000001E2 VOL: 0
+;PCODE: $000001E3 VOL: 0
+;PCODE: $000001E4 VOL: 0
+; 0000 0152             r_1 = 0;
+;PCODE: $000001E5 VOL: 0
+;PCODE: $000001E6 VOL: 0
+; 0000 0153             r_2 = 0;
+;PCODE: $000001E7 VOL: 0
+;PCODE: $000001E8 VOL: 0
+; 0000 0154             PORTD = seg[kol];
+;PCODE: $000001E9 VOL: 0
+;PCODE: $000001EA VOL: 0
+;PCODE: $000001EB VOL: 0
+;PCODE: $000001EC VOL: 0
+;PCODE: $000001ED VOL: 0
+; 0000 0155             r_3 = 1;
+;PCODE: $000001EE VOL: 0
+;PCODE: $000001EF VOL: 0
+; 0000 0156             if (kol == 0)
+;PCODE: $000001F0 VOL: 0
+;PCODE: $000001F1 VOL: 0
+;PCODE: $000001F2 VOL: 0
+; 0000 0157             {
+; 0000 0158                 r_3 = 0;
+;PCODE: $000001F3 VOL: 0
+;PCODE: $000001F4 VOL: 0
+; 0000 0159                 timer2 = 0;
+;PCODE: $000001F5 VOL: 0
+;PCODE: $000001F6 VOL: 0
+; 0000 015A                 while (timer2 < 30000);
+;PCODE: $000001F7 VOL: 0
+;PCODE: $000001F8 VOL: 0
+;PCODE: $000001F9 VOL: 0
+;PCODE: $000001FA VOL: 0
+;PCODE: $000001FB VOL: 0
+;PCODE: $000001FC VOL: 0
+; 0000 015B                 if (sum == 1000) sum = 999;
+;PCODE: $000001FD VOL: 0
+;PCODE: $000001FE VOL: 0
+;PCODE: $000001FF VOL: 0
+;PCODE: $00000200 VOL: 0
+;PCODE: $00000201 VOL: 0
+; 0000 015C                  while (timer2 < 500000) vivod(sum);
+;PCODE: $00000202 VOL: 0
+;PCODE: $00000203 VOL: 0
+;PCODE: $00000204 VOL: 0
+;PCODE: $00000205 VOL: 0
+;PCODE: $00000206 VOL: 0
+;PCODE: $00000207 VOL: 0
+;PCODE: $00000208 VOL: 0
+;PCODE: $00000209 VOL: 0
+;PCODE: $0000020A VOL: 0
+; 0000 015D sum = 0;
+;PCODE: $0000020B VOL: 0
+; 0000 015E                  kol = 10;
+;PCODE: $0000020C VOL: 0
+;PCODE: $0000020D VOL: 0
+; 0000 015F                  PORTD = 255;
+;PCODE: $0000020E VOL: 0
+;PCODE: $0000020F VOL: 0
+; 0000 0160             }
+; 0000 0161         }
+;PCODE: $00000210 VOL: 0
+; 0000 0162       }
+;PCODE: $00000211 VOL: 0
+;PCODE: $00000212 VOL: 0
+;PCODE: $00000213 VOL: 0
+; 0000 0163 }
+;PCODE: $00000214 VOL: 0
+;PCODE: $00000215 VOL: 0
+;PCODE: $00000216 VOL: 0
 ;

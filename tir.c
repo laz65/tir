@@ -43,9 +43,9 @@ Data Stack size         : 512
 #define p_3 PINB.2
 
 flash unsigned char  seg[10] = {seg_g, seg_a+seg_d+seg_e+seg_f+seg_g, seg_c+seg_f, seg_e+seg_f, seg_a+seg_d+seg_e, seg_b+seg_e, seg_b, seg_d+seg_e+seg_f+seg_g, 0, seg_e};
-unsigned int a,   m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
+unsigned int a, sum, m, pm,  m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
 unsigned long timer, timer2;
-
+unsigned char kol;
 // Timer 0 overflow interrupt service routine
 interrupt [TIM0_OVF] void timer0_ovf_isr(void)
 {
@@ -265,7 +265,8 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
         pm80 = read_adc(2);
         pm70 = read_adc(3);
         pm60 = read_adc(4);
-
+                  
+        kol = 10;
 while (1)
       {
       // Place your code here  
@@ -275,16 +276,80 @@ while (1)
         m70 = read_adc(3);
         m60 = read_adc(4);    
         if((pm100 - 20) > m100) a = 100; else pm100 = m100;
-        if((pm90 - 20) > m90) { if(a==100) a= 95; else a = 90; } else pm90 = m90;
-        if((pm80 - 20) > m80) { if(a==90) a= 85; else a = 80; } else pm80 = m80;
-        if((pm70 - 20) > m70) { if(a==80) a= 75; else a = 70; } else pm70 = m70;
-        if((pm60 - 20) > m60) { if(a==70) a= 65; else a = 60; } else pm60 = m60;   
+        if((pm90 - 20) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
+        if((pm80 - 20) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
+        if((pm70 - 20) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
+        if((pm60 - 20) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
         if (a > 0) 
         {    
             timer2 = 0;
-            while (timer2 < 70000) vivod(a); 
+            while (timer2 < 100000) vivod(a);    
+//++++++++
+if (a==100)
+{
+pm = pm100;
+m = m100;
+} ;
+if (a==80)
+{
+pm = pm90;
+m = m90;
+};
+if (a==60)
+{
+pm = pm80;
+m = m80;
+} ;
+if(a==40)
+{
+pm = pm70;
+m = m70;
+};
+if(a==20)
+{
+pm = pm60;
+m = m60;
+}
+            r_1 = 0;
+            r_2 = 0;
+            PORTD = 255;   
+            r_3 = 0;    
+
+                timer2 = 0;
+                while (timer2 < 50000) vivod(pm-24);    
+            r_1 = 0;
+            r_2 = 0;
+            PORTD = 255;   
+            r_3 = 0;    
+                timer2 = 0;
+                while (timer2 < 10000);    
+                timer2 = 0;
+                while (timer2 < 50000) vivod(m-24);    
+
+            r_1 = 0;
+            r_2 = 0;
+            PORTD = 255;   
+            r_3 = 0;    
+ 
+//++++++++
+            sum += a;
             a = 0; 
-            PORTD = 255;
+            kol--;              
+            r_1 = 0;
+            r_2 = 0;
+            PORTD = seg[kol];   
+            r_3 = 1;    
+            if (kol == 0) 
+            {
+                r_3 = 0;   
+                timer2 = 0;
+                while (timer2 < 30000);    
+                if (sum == 1000) sum = 999;
+                 while (timer2 < 500000) vivod(sum);
+                 sum = 0;
+                 kol = 10;    
+                 PORTD = 255;   
+            }
         }
       }
 }
