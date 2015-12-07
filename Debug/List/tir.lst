@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  D:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 21:46:53 2015
+AVRASM ver. 2.1.30  D:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 22:03:56 2015
 
 D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1090): warning: Register r3 already defined by the .DEF directive
 D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1091): warning: Register r4 already defined by the .DEF directive
@@ -1812,10 +1812,10 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0001a3 2e7e     +MOV R7 , R30
 0001a4 2e8f     +MOV R8 , R31
                  	__PUTW1R 7,8
-                 ; 0000 0119         if((pm100 - 2) > m100) a = 100; else pm100 = m100;
+                 ; 0000 0119         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
 0001a5 91a0 030a 	LDS  R26,_pm100
 0001a7 91b0 030b 	LDS  R27,_pm100+1
-0001a9 9712      	SBIW R26,2
+0001a9 9713      	SBIW R26,3
 0001aa 91e0 0308 	LDS  R30,_m100
 0001ac 91f0 0309 	LDS  R31,_m100+1
 0001ae 17ea      	CP   R30,R26
@@ -1929,13 +1929,13 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000213 2cdb     +MOV R13 , R11
 000214 2cec     +MOV R14 , R12
                  	__MOVEWRR 13,14,11,12
-                 ; 0000 011D         if((pm60 - 6) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
+                 ; 0000 011D         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
                  _0x40:
                 +
 000215 2da9     +MOV R26 , R9
 000216 2dba     +MOV R27 , R10
                  	__GETW2R 9,10
-000217 9716      	SBIW R26,6
+000217 9717      	SBIW R26,7
 000218 167a      	CP   R7,R26
 000219 068b      	CPC  R8,R27
 00021a f468      	BRSH _0x41

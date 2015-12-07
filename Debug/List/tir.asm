@@ -1742,10 +1742,10 @@ _0x30:
 	LDI  R26,LOW(4)
 	RCALL _read_adc
 	__PUTW1R 7,8
-; 0000 0119         if((pm100 - 2) > m100) a = 100; else pm100 = m100;
+; 0000 0119         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
 	LDS  R26,_pm100
 	LDS  R27,_pm100+1
-	SBIW R26,2
+	SBIW R26,3
 	LDS  R30,_m100
 	LDS  R31,_m100+1
 	CP   R30,R26
@@ -1841,10 +1841,10 @@ _0x65:
 	RJMP _0x40
 _0x3D:
 	__MOVEWRR 13,14,11,12
-; 0000 011D         if((pm60 - 6) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
+; 0000 011D         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
 _0x40:
 	__GETW2R 9,10
-	SBIW R26,6
+	SBIW R26,7
 	CP   R7,R26
 	CPC  R8,R27
 	BRSH _0x41

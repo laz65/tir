@@ -282,7 +282,7 @@ while (1)
         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
         if((pm80 - 4) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
         if((pm70 - 5) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
-        if((pm60 - 6) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
+        if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
         if (a > 0) 
         {    
             timer2 = 0;
@@ -295,7 +295,7 @@ while (1)
             PORTD = seg[kol];   
             r_3 = 1;    
             timer2 = 0;
-            while (timer2 < 30000);    
+            while (timer2 < 10000);    
             if (kol == 0) 
             {
                 r_3 = 0;   

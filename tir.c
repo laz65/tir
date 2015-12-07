@@ -278,11 +278,11 @@ while (1)
         m80 = read_adc(2);
         m70 = read_adc(3);
         m60 = read_adc(4);    
-        if((pm100 - 2) > m100) a = 100; else pm100 = m100;
+        if((pm100 - 3) > m100) a = 100; else pm100 = m100;
         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
         if((pm80 - 4) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
         if((pm70 - 5) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
-        if((pm60 - 6) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
+        if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
         if (a > 0) 
         {    
             timer2 = 0;

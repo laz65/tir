@@ -595,7 +595,7 @@
 ;PCODE: $0000012A VOL: 0
 ;PCODE: $0000012B VOL: 0
 ;PCODE: $0000012C VOL: 0
-; 0000 0119         if((pm100 - 2) > m100) a = 100; else pm100 = m100;
+; 0000 0119         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
 ;PCODE: $0000012D VOL: 0
 ;PCODE: $0000012E VOL: 0
 ;PCODE: $0000012F VOL: 0
@@ -669,7 +669,7 @@
 ;PCODE: $00000170 VOL: 0
 ;PCODE: $00000171 VOL: 0
 ;PCODE: $00000172 VOL: 0
-; 0000 011D         if((pm60 - 6) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
+; 0000 011D         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
 ;PCODE: $00000173 VOL: 0
 ;PCODE: $00000174 VOL: 0
 ;PCODE: $00000175 VOL: 0
