@@ -1497,7 +1497,8 @@ _main:
 ; 0000 008B 
 ; 0000 008C // Port C initialization
 ; 0000 008D // Function: Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
-; 0000 008E DDRC=(0<<DDC6) | (0<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
+; 0000 008E DDRC=(0<<DDC6) | (1<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
+	LDI  R30,LOW(32)
 	OUT  0x7,R30
 ; 0000 008F // State: Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
 ; 0000 0090 PORTC=(0<<PORTC6) | (0<<PORTC5) | (1<<PORTC4) | (1<<PORTC3) | (1<<PORTC2) | (1<<PORTC1) | (1<<PORTC0);
@@ -1762,11 +1763,11 @@ _0x2B:
 	BRNE _0x2D
 	LDI  R30,LOW(90)
 	LDI  R31,HIGH(90)
-	RJMP _0x71
+	RJMP _0x74
 _0x2D:
 	LDI  R30,LOW(80)
 	LDI  R31,HIGH(80)
-_0x71:
+_0x74:
 	__PUTW1R 3,4
 	RJMP _0x2F
 _0x2C:
@@ -1791,11 +1792,11 @@ _0x2F:
 	BRNE _0x31
 	LDI  R30,LOW(70)
 	LDI  R31,HIGH(70)
-	RJMP _0x72
+	RJMP _0x75
 _0x31:
 	LDI  R30,LOW(60)
 	LDI  R31,HIGH(60)
-_0x72:
+_0x75:
 	__PUTW1R 3,4
 	RJMP _0x33
 _0x30:
@@ -1820,11 +1821,11 @@ _0x33:
 	BRNE _0x35
 	LDI  R30,LOW(50)
 	LDI  R31,HIGH(50)
-	RJMP _0x73
+	RJMP _0x76
 _0x35:
 	LDI  R30,LOW(40)
 	LDI  R31,HIGH(40)
-_0x73:
+_0x76:
 	__PUTW1R 3,4
 	RJMP _0x37
 _0x34:
@@ -1846,11 +1847,11 @@ _0x37:
 	BRNE _0x39
 	LDI  R30,LOW(30)
 	LDI  R31,HIGH(30)
-	RJMP _0x74
+	RJMP _0x77
 _0x39:
 	LDI  R30,LOW(20)
 	LDI  R31,HIGH(20)
-_0x74:
+_0x77:
 	__PUTW1R 3,4
 	RJMP _0x3B
 _0x38:
@@ -1865,10 +1866,10 @@ _0x3B:
 ; 0000 011C         {
 ; 0000 011D             timer2 = 0;
 	RCALL SUBOPT_0x4
-; 0000 011E             while (timer2 < 100000) vivod(a);
+; 0000 011E             while (timer2 < 30000) vivod(a);
 _0x3D:
 	RCALL SUBOPT_0x5
-	__CPD2N 0x186A0
+	RCALL SUBOPT_0x6
 	BRSH _0x3F
 	__GETW2R 3,4
 	RCALL _vivod
@@ -1940,123 +1941,127 @@ _0x43:
 ; 0000 0138 }
 ; 0000 0139             r_1 = 0;
 _0x44:
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 ; 0000 013A             r_2 = 0;
 ; 0000 013B             PORTD = 255;
 ; 0000 013C             r_3 = 0;
-; 0000 013D 
-; 0000 013E                 timer2 = 0;
-; 0000 013F                 while (timer2 < 50000) vivod(pm-24);
+; 0000 013D                 timer2 = 0;
+; 0000 013E                 while (timer2 < 10000);
 _0x4B:
-	RCALL SUBOPT_0x7
-	BRSH _0x4D
+	RCALL SUBOPT_0x8
+	BRLO _0x4B
+; 0000 013F 
+; 0000 0140                 timer2 = 0;
+	RCALL SUBOPT_0x4
+; 0000 0141                 while (timer2 < 30000) vivod(pm-24);
+_0x4E:
+	RCALL SUBOPT_0x9
+	BRSH _0x50
 	__GETW2R 9,10
 	SBIW R26,24
 	RCALL _vivod
-	RJMP _0x4B
-_0x4D:
-; 0000 0140 PORTB.0 = 0;
-	RCALL SUBOPT_0x6
-; 0000 0141             r_2 = 0;
-; 0000 0142             PORTD = 255;
-; 0000 0143             r_3 = 0;
-; 0000 0144                 timer2 = 0;
-; 0000 0145                 while (timer2 < 10000);
-_0x54:
-	RCALL SUBOPT_0x5
-	__CPD2N 0x2710
-	BRLO _0x54
-; 0000 0146                 timer2 = 0;
-	RCALL SUBOPT_0x4
-; 0000 0147                 while (timer2 < 50000) vivod(m-24);
-_0x57:
+	RJMP _0x4E
+_0x50:
+; 0000 0142 PORTB.0 = 0;
 	RCALL SUBOPT_0x7
-	BRSH _0x59
+; 0000 0143             r_2 = 0;
+; 0000 0144             PORTD = 255;
+; 0000 0145             r_3 = 0;
+; 0000 0146                 timer2 = 0;
+; 0000 0147                 while (timer2 < 10000);
+_0x57:
+	RCALL SUBOPT_0x8
+	BRLO _0x57
+; 0000 0148                 timer2 = 0;
+	RCALL SUBOPT_0x4
+; 0000 0149                 while (timer2 < 30000) vivod(m-24);
+_0x5A:
+	RCALL SUBOPT_0x9
+	BRSH _0x5C
 	__GETW2R 7,8
 	SBIW R26,24
 	RCALL _vivod
-	RJMP _0x57
-_0x59:
-; 0000 0149 PORTB.0 = 0;
+	RJMP _0x5A
+_0x5C:
+; 0000 014B PORTB.0 = 0;
 	CBI  0x5,0
-; 0000 014A             r_2 = 0;
+; 0000 014C             r_2 = 0;
 	CBI  0x5,1
-; 0000 014B             PORTD = 255;
+; 0000 014D             PORTD = 255;
 	LDI  R30,LOW(255)
 	OUT  0xB,R30
-; 0000 014C             r_3 = 0;
+; 0000 014E             r_3 = 0;
 	CBI  0x5,2
-; 0000 014D 
-; 0000 014E //++++++++
-; 0000 014F             sum += a;
+; 0000 014F 
+; 0000 0150 //++++++++
+; 0000 0151             sum += a;
 	__ADDWRR 5,6,3,4
-; 0000 0150             a = 0;
+; 0000 0152             a = 0;
 	CLR  R3
 	CLR  R4
-; 0000 0151             kol--;
+; 0000 0153             kol--;
 	LDS  R30,_kol
 	SUBI R30,LOW(1)
 	STS  _kol,R30
-; 0000 0152             r_1 = 0;
+; 0000 0154             r_1 = 0;
 	CBI  0x5,0
-; 0000 0153             r_2 = 0;
+; 0000 0155             r_2 = 0;
 	CBI  0x5,1
-; 0000 0154             PORTD = seg[kol];
+; 0000 0156             PORTD = seg[kol];
 	LDI  R31,0
 	RCALL SUBOPT_0x2
-; 0000 0155             r_3 = 1;
+; 0000 0157             r_3 = 1;
 	SBI  0x5,2
-; 0000 0156             if (kol == 0)
+; 0000 0158             if (kol == 0)
 	LDS  R30,_kol
 	CPI  R30,0
-	BRNE _0x66
-; 0000 0157             {
-; 0000 0158                 r_3 = 0;
+	BRNE _0x69
+; 0000 0159             {
+; 0000 015A                 r_3 = 0;
 	CBI  0x5,2
-; 0000 0159                 timer2 = 0;
+; 0000 015B                 timer2 = 0;
 	RCALL SUBOPT_0x4
-; 0000 015A                 while (timer2 < 30000);
-_0x69:
-	RCALL SUBOPT_0x5
-	__CPD2N 0x7530
-	BRLO _0x69
-; 0000 015B                 if (sum == 1000) sum = 999;
+; 0000 015C                 while (timer2 < 30000);
+_0x6C:
+	RCALL SUBOPT_0x9
+	BRLO _0x6C
+; 0000 015D                 if (sum == 1000) sum = 999;
 	LDI  R30,LOW(1000)
 	LDI  R31,HIGH(1000)
 	CP   R30,R5
 	CPC  R31,R6
-	BRNE _0x6C
+	BRNE _0x6F
 	LDI  R30,LOW(999)
 	LDI  R31,HIGH(999)
 	__PUTW1R 5,6
-; 0000 015C                  while (timer2 < 500000) vivod(sum);
-_0x6C:
-_0x6D:
+; 0000 015E                  while (timer2 < 500000) vivod(sum);
+_0x6F:
+_0x70:
 	RCALL SUBOPT_0x5
 	__CPD2N 0x7A120
-	BRSH _0x6F
+	BRSH _0x72
 	__GETW2R 5,6
 	RCALL _vivod
-	RJMP _0x6D
-_0x6F:
-; 0000 015D sum = 0;
+	RJMP _0x70
+_0x72:
+; 0000 015F sum = 0;
 	CLR  R5
 	CLR  R6
-; 0000 015E                  kol = 10;
+; 0000 0160                  kol = 10;
 	LDI  R30,LOW(10)
 	STS  _kol,R30
-; 0000 015F                  PORTD = 255;
+; 0000 0161                  PORTD = 255;
 	LDI  R30,LOW(255)
 	OUT  0xB,R30
-; 0000 0160             }
-; 0000 0161         }
-_0x66:
-; 0000 0162       }
+; 0000 0162             }
+; 0000 0163         }
+_0x69:
+; 0000 0164       }
 _0x3C:
 	RJMP _0x27
-; 0000 0163 }
-_0x70:
-	RJMP _0x70
+; 0000 0165 }
+_0x73:
+	RJMP _0x73
 ; .FEND
 ;
 
@@ -2129,7 +2134,7 @@ SUBOPT_0x3:
 	CALL __MULW12
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:25 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:32 WORDS
 SUBOPT_0x4:
 	LDI  R30,LOW(0)
 	STS  _timer2,R30
@@ -2138,7 +2143,7 @@ SUBOPT_0x4:
 	STS  _timer2+3,R30
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:27 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 7 TIMES, CODE SIZE REDUCTION:33 WORDS
 SUBOPT_0x5:
 	LDS  R26,_timer2
 	LDS  R27,_timer2+1
@@ -2146,8 +2151,13 @@ SUBOPT_0x5:
 	LDS  R25,_timer2+3
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:12 WORDS
 SUBOPT_0x6:
+	__CPD2N 0x7530
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+SUBOPT_0x7:
 	CBI  0x5,0
 	CBI  0x5,1
 	LDI  R30,LOW(255)
@@ -2156,10 +2166,15 @@ SUBOPT_0x6:
 	RJMP SUBOPT_0x4
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
-SUBOPT_0x7:
+SUBOPT_0x8:
 	RCALL SUBOPT_0x5
-	__CPD2N 0xC350
+	__CPD2N 0x2710
 	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+SUBOPT_0x9:
+	RCALL SUBOPT_0x5
+	RJMP SUBOPT_0x6
 
 
 	.CSEG

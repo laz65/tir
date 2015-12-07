@@ -321,7 +321,7 @@
 ; 0000 008B 
 ; 0000 008C // Port C initialization
 ; 0000 008D // Function: Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
-; 0000 008E DDRC=(0<<DDC6) | (0<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
+; 0000 008E DDRC=(0<<DDC6) | (1<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
 ;PCODE: $000000A7 VOL: 0
 ;PCODE: $000000A8 VOL: 0
 ; 0000 008F // State: Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
@@ -676,7 +676,7 @@
 ; 0000 011D             timer2 = 0;
 ;PCODE: $00000177 VOL: 0
 ;PCODE: $00000178 VOL: 0
-; 0000 011E             while (timer2 < 100000) vivod(a);
+; 0000 011E             while (timer2 < 30000) vivod(a);
 ;PCODE: $00000179 VOL: 0
 ;PCODE: $0000017A VOL: 0
 ;PCODE: $0000017B VOL: 0
@@ -762,144 +762,154 @@
 ; 0000 013C             r_3 = 0;
 ;PCODE: $000001AF VOL: 0
 ;PCODE: $000001B0 VOL: 0
-; 0000 013D 
-; 0000 013E                 timer2 = 0;
+; 0000 013D                 timer2 = 0;
 ;PCODE: $000001B1 VOL: 0
 ;PCODE: $000001B2 VOL: 0
-; 0000 013F                 while (timer2 < 50000) vivod(pm-24);
+; 0000 013E                 while (timer2 < 10000);
 ;PCODE: $000001B3 VOL: 0
 ;PCODE: $000001B4 VOL: 0
 ;PCODE: $000001B5 VOL: 0
 ;PCODE: $000001B6 VOL: 0
 ;PCODE: $000001B7 VOL: 0
 ;PCODE: $000001B8 VOL: 0
+; 0000 013F 
+; 0000 0140                 timer2 = 0;
 ;PCODE: $000001B9 VOL: 0
 ;PCODE: $000001BA VOL: 0
+; 0000 0141                 while (timer2 < 30000) vivod(pm-24);
 ;PCODE: $000001BB VOL: 0
-; 0000 0140 PORTB.0 = 0;
 ;PCODE: $000001BC VOL: 0
 ;PCODE: $000001BD VOL: 0
-; 0000 0141             r_2 = 0;
 ;PCODE: $000001BE VOL: 0
 ;PCODE: $000001BF VOL: 0
-; 0000 0142             PORTD = 255;
 ;PCODE: $000001C0 VOL: 0
 ;PCODE: $000001C1 VOL: 0
-; 0000 0143             r_3 = 0;
 ;PCODE: $000001C2 VOL: 0
 ;PCODE: $000001C3 VOL: 0
-; 0000 0144                 timer2 = 0;
+; 0000 0142 PORTB.0 = 0;
 ;PCODE: $000001C4 VOL: 0
 ;PCODE: $000001C5 VOL: 0
-; 0000 0145                 while (timer2 < 10000);
+; 0000 0143             r_2 = 0;
 ;PCODE: $000001C6 VOL: 0
 ;PCODE: $000001C7 VOL: 0
+; 0000 0144             PORTD = 255;
 ;PCODE: $000001C8 VOL: 0
 ;PCODE: $000001C9 VOL: 0
+; 0000 0145             r_3 = 0;
 ;PCODE: $000001CA VOL: 0
 ;PCODE: $000001CB VOL: 0
 ; 0000 0146                 timer2 = 0;
 ;PCODE: $000001CC VOL: 0
 ;PCODE: $000001CD VOL: 0
-; 0000 0147                 while (timer2 < 50000) vivod(m-24);
+; 0000 0147                 while (timer2 < 10000);
 ;PCODE: $000001CE VOL: 0
 ;PCODE: $000001CF VOL: 0
 ;PCODE: $000001D0 VOL: 0
 ;PCODE: $000001D1 VOL: 0
 ;PCODE: $000001D2 VOL: 0
 ;PCODE: $000001D3 VOL: 0
+; 0000 0148                 timer2 = 0;
 ;PCODE: $000001D4 VOL: 0
 ;PCODE: $000001D5 VOL: 0
+; 0000 0149                 while (timer2 < 30000) vivod(m-24);
 ;PCODE: $000001D6 VOL: 0
-; 0000 0149 PORTB.0 = 0;
 ;PCODE: $000001D7 VOL: 0
 ;PCODE: $000001D8 VOL: 0
-; 0000 014A             r_2 = 0;
 ;PCODE: $000001D9 VOL: 0
 ;PCODE: $000001DA VOL: 0
-; 0000 014B             PORTD = 255;
 ;PCODE: $000001DB VOL: 0
 ;PCODE: $000001DC VOL: 0
-; 0000 014C             r_3 = 0;
 ;PCODE: $000001DD VOL: 0
 ;PCODE: $000001DE VOL: 0
-; 0000 014D 
-; 0000 014E //++++++++
-; 0000 014F             sum += a;
+; 0000 014B PORTB.0 = 0;
 ;PCODE: $000001DF VOL: 0
 ;PCODE: $000001E0 VOL: 0
-; 0000 0150             a = 0;
+; 0000 014C             r_2 = 0;
 ;PCODE: $000001E1 VOL: 0
-; 0000 0151             kol--;
 ;PCODE: $000001E2 VOL: 0
+; 0000 014D             PORTD = 255;
 ;PCODE: $000001E3 VOL: 0
 ;PCODE: $000001E4 VOL: 0
-; 0000 0152             r_1 = 0;
+; 0000 014E             r_3 = 0;
 ;PCODE: $000001E5 VOL: 0
 ;PCODE: $000001E6 VOL: 0
-; 0000 0153             r_2 = 0;
+; 0000 014F 
+; 0000 0150 //++++++++
+; 0000 0151             sum += a;
 ;PCODE: $000001E7 VOL: 0
 ;PCODE: $000001E8 VOL: 0
-; 0000 0154             PORTD = seg[kol];
+; 0000 0152             a = 0;
 ;PCODE: $000001E9 VOL: 0
+; 0000 0153             kol--;
 ;PCODE: $000001EA VOL: 0
 ;PCODE: $000001EB VOL: 0
 ;PCODE: $000001EC VOL: 0
+; 0000 0154             r_1 = 0;
 ;PCODE: $000001ED VOL: 0
-; 0000 0155             r_3 = 1;
 ;PCODE: $000001EE VOL: 0
+; 0000 0155             r_2 = 0;
 ;PCODE: $000001EF VOL: 0
-; 0000 0156             if (kol == 0)
 ;PCODE: $000001F0 VOL: 0
+; 0000 0156             PORTD = seg[kol];
 ;PCODE: $000001F1 VOL: 0
 ;PCODE: $000001F2 VOL: 0
-; 0000 0157             {
-; 0000 0158                 r_3 = 0;
 ;PCODE: $000001F3 VOL: 0
 ;PCODE: $000001F4 VOL: 0
-; 0000 0159                 timer2 = 0;
 ;PCODE: $000001F5 VOL: 0
+; 0000 0157             r_3 = 1;
 ;PCODE: $000001F6 VOL: 0
-; 0000 015A                 while (timer2 < 30000);
 ;PCODE: $000001F7 VOL: 0
+; 0000 0158             if (kol == 0)
 ;PCODE: $000001F8 VOL: 0
 ;PCODE: $000001F9 VOL: 0
 ;PCODE: $000001FA VOL: 0
+; 0000 0159             {
+; 0000 015A                 r_3 = 0;
 ;PCODE: $000001FB VOL: 0
 ;PCODE: $000001FC VOL: 0
-; 0000 015B                 if (sum == 1000) sum = 999;
+; 0000 015B                 timer2 = 0;
 ;PCODE: $000001FD VOL: 0
 ;PCODE: $000001FE VOL: 0
+; 0000 015C                 while (timer2 < 30000);
 ;PCODE: $000001FF VOL: 0
 ;PCODE: $00000200 VOL: 0
 ;PCODE: $00000201 VOL: 0
-; 0000 015C                  while (timer2 < 500000) vivod(sum);
 ;PCODE: $00000202 VOL: 0
 ;PCODE: $00000203 VOL: 0
 ;PCODE: $00000204 VOL: 0
+; 0000 015D                 if (sum == 1000) sum = 999;
 ;PCODE: $00000205 VOL: 0
 ;PCODE: $00000206 VOL: 0
 ;PCODE: $00000207 VOL: 0
 ;PCODE: $00000208 VOL: 0
 ;PCODE: $00000209 VOL: 0
+; 0000 015E                  while (timer2 < 500000) vivod(sum);
 ;PCODE: $0000020A VOL: 0
-; 0000 015D sum = 0;
 ;PCODE: $0000020B VOL: 0
-; 0000 015E                  kol = 10;
 ;PCODE: $0000020C VOL: 0
 ;PCODE: $0000020D VOL: 0
-; 0000 015F                  PORTD = 255;
 ;PCODE: $0000020E VOL: 0
 ;PCODE: $0000020F VOL: 0
-; 0000 0160             }
-; 0000 0161         }
 ;PCODE: $00000210 VOL: 0
-; 0000 0162       }
 ;PCODE: $00000211 VOL: 0
 ;PCODE: $00000212 VOL: 0
+; 0000 015F sum = 0;
 ;PCODE: $00000213 VOL: 0
-; 0000 0163 }
+; 0000 0160                  kol = 10;
 ;PCODE: $00000214 VOL: 0
 ;PCODE: $00000215 VOL: 0
+; 0000 0161                  PORTD = 255;
 ;PCODE: $00000216 VOL: 0
+;PCODE: $00000217 VOL: 0
+; 0000 0162             }
+; 0000 0163         }
+;PCODE: $00000218 VOL: 0
+; 0000 0164       }
+;PCODE: $00000219 VOL: 0
+;PCODE: $0000021A VOL: 0
+;PCODE: $0000021B VOL: 0
+; 0000 0165 }
+;PCODE: $0000021C VOL: 0
+;PCODE: $0000021D VOL: 0
+;PCODE: $0000021E VOL: 0
 ;
