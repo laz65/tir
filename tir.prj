@@ -35,7 +35,7 @@ EditorPanel1=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp1=1200061027
+TimeStamp1=1200072376
 =======
 TimeStamp1=1200055150
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -161,8 +161,8 @@ LinkageInformationPresent=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-COFFileTimeStamp=1200061261
-Build=91
+COFFileTimeStamp=1200072376
+Build=96
 =======
 COFFileTimeStamp=1200055216
 Build=89
@@ -295,7 +295,7 @@ COFFileTimeStamp=-1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Build=91
+Build=96
 =======
 Build=89
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -395,7 +395,7 @@ VerifyProgramming=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-ProgrammingCounter=19
+ProgrammingCounter=23
 =======
 ProgrammingCounter=18
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -434,7 +434,7 @@ L16=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L17=Build: 90
+L17=Build: 95
 L18=1231 line(s) compiled
 =======
 =======
@@ -447,7 +447,7 @@ L17=Build: 88
 L18=1229 line(s) compiled
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 L19=No errors
-L20=No warnings
+L20=2 warning(s)
 L21=
 L22=Bit variables size: 0 byte(s)
 L23=
@@ -468,7 +468,7 @@ L36=EEPROM usage: 0 byte(s), 0,0% of EEPROM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L37=Program size: 858 words (1716 bytes), 5,2% of FLASH
+L37=Program size: 758 words (1516 bytes), 4,6% of FLASH
 =======
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -482,7 +482,7 @@ L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 Lines=38
-L38=110 words (220 bytes), 11,4% reduced by Code Compression
+L38=39 words (78 bytes), 4,9% reduced by Code Compression
 [BuildInfoAssembler]
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
@@ -491,7 +491,7 @@ L3=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2268): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
+L4=D:\Project\Micro\AVR\tir\Debug\List\tir.asm(2125): No EEPROM data, deleting D:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 =======
 L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2254): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -512,7 +512,7 @@ L8=---------------------------------------------------------------
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L9=[.cseg] 0x000000 0x0006b4   1706     10   1716   32768   5.2%
+L9=[.cseg] 0x000000 0x0005ec   1506     10   1516   32768   4.6%
 =======
 L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -542,7 +542,7 @@ ScrollPosY=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200061263
+TimeStamp=1200072417
 =======
 TimeStamp=1200055250
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -570,11 +570,11 @@ F1=tir.c
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200061027
-Row=0
-Column=0
+TimeStamp=1200072376
+Row=281
+Column=20
 ScrollPosX=0
-ScrollPosY=285
+ScrollPosY=260
 =======
 TimeStamp=1200055150
 Row=137
@@ -632,7 +632,7 @@ BK8=-1
 BK9=-1
 [HeadersList]
 Files=1
-F1=F:\Project\Micro\AVR\tir\tir.c
+F1=D:\Project\Micro\AVR\tir\tir.c
 [Header1]
 Files=3
 F1=C:\cvavr\inc\mega328p.h
