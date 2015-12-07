@@ -1091,14 +1091,14 @@ __DELAY_USW_LOOP:
 	.DEF _a_msb=R4
 	.DEF _sum=R5
 	.DEF _sum_msb=R6
-	.DEF _m=R7
-	.DEF _m_msb=R8
-	.DEF _pm=R9
-	.DEF _pm_msb=R10
-	.DEF _m60=R11
-	.DEF _m60_msb=R12
-	.DEF _pm60=R13
-	.DEF _pm60_msb=R14
+	.DEF _m60=R7
+	.DEF _m60_msb=R8
+	.DEF _pm60=R9
+	.DEF _pm60_msb=R10
+	.DEF _m70=R11
+	.DEF _m70_msb=R12
+	.DEF _pm70=R13
+	.DEF _pm70_msb=R14
 
 ;GPIOR0 INITIALIZATION VALUE
 	.EQU __GPIOR0_INIT=0x00
@@ -1250,7 +1250,7 @@ __CLEAR_SRAM:
 ;#define p_3 PINB.2
 ;
 ;flash unsigned char  seg[10] = {seg_g, seg_a+seg_d+seg_e+seg_f+seg_g, seg_c+seg_f, seg_e+seg_f, seg_a+seg_d+seg_e, seg_b ...
-;unsigned int a, sum, m, pm,  m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
+;unsigned int a, sum, m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
 ;unsigned long timer, timer2;
 ;unsigned char kol;
 ;// Timer 0 overflow interrupt service routine
@@ -1669,407 +1669,296 @@ _main:
 ; 0000 0102 #asm("sei")
 	sei
 ; 0000 0103 
-; 0000 0104 
-; 0000 0105 //seg_a = 0;
-; 0000 0106 //r_1 = 1;
-; 0000 0107         pm100 = read_adc(0);
+; 0000 0104         r_1 = 0;
+	CBI  0x5,0
+; 0000 0105         r_2 = 0;
+	CBI  0x5,1
+; 0000 0106         PORTD = 12;
+	LDI  R30,LOW(12)
+	OUT  0xB,R30
+; 0000 0107         r_3 = 1;
+	RCALL SUBOPT_0x4
+; 0000 0108         timer2 = 0;
+; 0000 0109         while (timer2 < 500000);
+_0x2D:
+	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
+	BRLO _0x2D
+; 0000 010A         pm100 = read_adc(0);
 	LDI  R26,LOW(0)
 	RCALL _read_adc
 	STS  _pm100,R30
 	STS  _pm100+1,R31
-; 0000 0108         pm90 = read_adc(1);
+; 0000 010B         pm90 = read_adc(1);
 	LDI  R26,LOW(1)
 	RCALL _read_adc
 	STS  _pm90,R30
 	STS  _pm90+1,R31
-; 0000 0109         pm80 = read_adc(2);
+; 0000 010C         pm80 = read_adc(2);
 	LDI  R26,LOW(2)
 	RCALL _read_adc
 	STS  _pm80,R30
 	STS  _pm80+1,R31
-; 0000 010A         pm70 = read_adc(3);
+; 0000 010D         pm70 = read_adc(3);
 	LDI  R26,LOW(3)
 	RCALL _read_adc
-	STS  _pm70,R30
-	STS  _pm70+1,R31
-; 0000 010B         pm60 = read_adc(4);
+	__PUTW1R 13,14
+; 0000 010E         pm60 = read_adc(4);
 	LDI  R26,LOW(4)
 	RCALL _read_adc
-	__PUTW1R 13,14
-; 0000 010C 
-; 0000 010D         kol = 10;
+	__PUTW1R 9,10
+; 0000 010F         PORTD = seg[0];
+	LDI  R30,LOW(_seg*2)
+	LDI  R31,HIGH(_seg*2)
+	LPM  R0,Z
+	OUT  0xB,R0
+; 0000 0110         kol = 10;
 	LDI  R30,LOW(10)
 	STS  _kol,R30
-; 0000 010E while (1)
-_0x27:
-; 0000 010F       {
-; 0000 0110       // Place your code here
-; 0000 0111         m100 = read_adc(0);
+; 0000 0111 while (1)
+_0x30:
+; 0000 0112       {
+; 0000 0113       // Place your code here
+; 0000 0114         m100 = read_adc(0);
 	LDI  R26,LOW(0)
 	RCALL _read_adc
 	STS  _m100,R30
 	STS  _m100+1,R31
-; 0000 0112         m90 = read_adc(1);
+; 0000 0115         m90 = read_adc(1);
 	LDI  R26,LOW(1)
 	RCALL _read_adc
 	STS  _m90,R30
 	STS  _m90+1,R31
-; 0000 0113         m80 = read_adc(2);
+; 0000 0116         m80 = read_adc(2);
 	LDI  R26,LOW(2)
 	RCALL _read_adc
 	STS  _m80,R30
 	STS  _m80+1,R31
-; 0000 0114         m70 = read_adc(3);
+; 0000 0117         m70 = read_adc(3);
 	LDI  R26,LOW(3)
 	RCALL _read_adc
-	STS  _m70,R30
-	STS  _m70+1,R31
-; 0000 0115         m60 = read_adc(4);
+	__PUTW1R 11,12
+; 0000 0118         m60 = read_adc(4);
 	LDI  R26,LOW(4)
 	RCALL _read_adc
-	__PUTW1R 11,12
-; 0000 0116         if((pm100 - 20) > m100) a = 100; else pm100 = m100;
+	__PUTW1R 7,8
+; 0000 0119         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
 	LDS  R26,_pm100
 	LDS  R27,_pm100+1
-	SBIW R26,20
+	SBIW R26,3
 	LDS  R30,_m100
 	LDS  R31,_m100+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x2A
+	BRSH _0x33
 	LDI  R30,LOW(100)
 	LDI  R31,HIGH(100)
 	__PUTW1R 3,4
-	RJMP _0x2B
-_0x2A:
+	RJMP _0x34
+_0x33:
 	LDS  R30,_m100
 	LDS  R31,_m100+1
 	STS  _pm100,R30
 	STS  _pm100+1,R31
-; 0000 0117         if((pm90 - 20) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
-_0x2B:
+; 0000 011A         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
+_0x34:
 	LDS  R26,_pm90
 	LDS  R27,_pm90+1
-	SBIW R26,20
+	SBIW R26,3
 	LDS  R30,_m90
 	LDS  R31,_m90+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x2C
+	BRSH _0x35
 	LDI  R30,LOW(100)
 	LDI  R31,HIGH(100)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x2D
+	BRNE _0x36
 	LDI  R30,LOW(90)
 	LDI  R31,HIGH(90)
-	RJMP _0x74
-_0x2D:
+	RJMP _0x63
+_0x36:
 	LDI  R30,LOW(80)
 	LDI  R31,HIGH(80)
-_0x74:
+_0x63:
 	__PUTW1R 3,4
-	RJMP _0x2F
-_0x2C:
+	RJMP _0x38
+_0x35:
 	LDS  R30,_m90
 	LDS  R31,_m90+1
 	STS  _pm90,R30
 	STS  _pm90+1,R31
-; 0000 0118         if((pm80 - 20) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
-_0x2F:
+; 0000 011B         if((pm80 - 4) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
+_0x38:
 	LDS  R26,_pm80
 	LDS  R27,_pm80+1
-	SBIW R26,20
+	SBIW R26,4
 	LDS  R30,_m80
 	LDS  R31,_m80+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x30
+	BRSH _0x39
 	LDI  R30,LOW(80)
 	LDI  R31,HIGH(80)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x31
+	BRNE _0x3A
 	LDI  R30,LOW(70)
 	LDI  R31,HIGH(70)
-	RJMP _0x75
-_0x31:
+	RJMP _0x64
+_0x3A:
 	LDI  R30,LOW(60)
 	LDI  R31,HIGH(60)
-_0x75:
+_0x64:
 	__PUTW1R 3,4
-	RJMP _0x33
-_0x30:
+	RJMP _0x3C
+_0x39:
 	LDS  R30,_m80
 	LDS  R31,_m80+1
 	STS  _pm80,R30
 	STS  _pm80+1,R31
-; 0000 0119         if((pm70 - 20) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
-_0x33:
-	LDS  R26,_pm70
-	LDS  R27,_pm70+1
-	SBIW R26,20
-	LDS  R30,_m70
-	LDS  R31,_m70+1
-	CP   R30,R26
-	CPC  R31,R27
-	BRSH _0x34
-	LDI  R30,LOW(60)
-	LDI  R31,HIGH(60)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x35
-	LDI  R30,LOW(50)
-	LDI  R31,HIGH(50)
-	RJMP _0x76
-_0x35:
-	LDI  R30,LOW(40)
-	LDI  R31,HIGH(40)
-_0x76:
-	__PUTW1R 3,4
-	RJMP _0x37
-_0x34:
-	LDS  R30,_m70
-	LDS  R31,_m70+1
-	STS  _pm70,R30
-	STS  _pm70+1,R31
-; 0000 011A         if((pm60 - 20) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
-_0x37:
+; 0000 011C         if((pm70 - 5) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
+_0x3C:
 	__GETW2R 13,14
-	SBIW R26,20
+	SBIW R26,5
 	CP   R11,R26
 	CPC  R12,R27
-	BRSH _0x38
-	LDI  R30,LOW(40)
-	LDI  R31,HIGH(40)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x39
-	LDI  R30,LOW(30)
-	LDI  R31,HIGH(30)
-	RJMP _0x77
-_0x39:
-	LDI  R30,LOW(20)
-	LDI  R31,HIGH(20)
-_0x77:
-	__PUTW1R 3,4
-	RJMP _0x3B
-_0x38:
-	__MOVEWRR 13,14,11,12
-; 0000 011B         if (a > 0)
-_0x3B:
-	CLR  R0
-	CP   R0,R3
-	CPC  R0,R4
-	BRLO PC+2
-	RJMP _0x3C
-; 0000 011C         {
-; 0000 011D             timer2 = 0;
-	RCALL SUBOPT_0x4
-; 0000 011E             while (timer2 < 30000) vivod(a);
-_0x3D:
-	RCALL SUBOPT_0x5
-	RCALL SUBOPT_0x6
-	BRSH _0x3F
-	__GETW2R 3,4
-	RCALL _vivod
-	RJMP _0x3D
-_0x3F:
-; 0000 0120 if (a==100)
-	LDI  R30,LOW(100)
-	LDI  R31,HIGH(100)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x40
-; 0000 0121 {
-; 0000 0122 pm = pm100;
-	__GETWRMN 9,10,0,_pm100
-; 0000 0123 m = m100;
-	__GETWRMN 7,8,0,_m100
-; 0000 0124 } ;
-_0x40:
-; 0000 0125 if (a==80)
-	LDI  R30,LOW(80)
-	LDI  R31,HIGH(80)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x41
-; 0000 0126 {
-; 0000 0127 pm = pm90;
-	__GETWRMN 9,10,0,_pm90
-; 0000 0128 m = m90;
-	__GETWRMN 7,8,0,_m90
-; 0000 0129 };
-_0x41:
-; 0000 012A if (a==60)
+	BRSH _0x3D
 	LDI  R30,LOW(60)
 	LDI  R31,HIGH(60)
+	CP   R30,R3
+	CPC  R31,R4
+	BRNE _0x3E
+	LDI  R30,LOW(50)
+	LDI  R31,HIGH(50)
+	RJMP _0x65
+_0x3E:
+	LDI  R30,LOW(40)
+	LDI  R31,HIGH(40)
+_0x65:
+	__PUTW1R 3,4
+	RJMP _0x40
+_0x3D:
+	__MOVEWRR 13,14,11,12
+; 0000 011D         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
+_0x40:
+	__GETW2R 9,10
+	SBIW R26,7
+	CP   R7,R26
+	CPC  R8,R27
+	BRSH _0x41
+	LDI  R30,LOW(40)
+	LDI  R31,HIGH(40)
 	CP   R30,R3
 	CPC  R31,R4
 	BRNE _0x42
-; 0000 012B {
-; 0000 012C pm = pm80;
-	__GETWRMN 9,10,0,_pm80
-; 0000 012D m = m80;
-	__GETWRMN 7,8,0,_m80
-; 0000 012E } ;
+	LDI  R30,LOW(30)
+	LDI  R31,HIGH(30)
+	RJMP _0x66
 _0x42:
-; 0000 012F if(a==40)
-	LDI  R30,LOW(40)
-	LDI  R31,HIGH(40)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x43
-; 0000 0130 {
-; 0000 0131 pm = pm70;
-	__GETWRMN 9,10,0,_pm70
-; 0000 0132 m = m70;
-	__GETWRMN 7,8,0,_m70
-; 0000 0133 };
-_0x43:
-; 0000 0134 if(a==20)
 	LDI  R30,LOW(20)
 	LDI  R31,HIGH(20)
-	CP   R30,R3
-	CPC  R31,R4
-	BRNE _0x44
-; 0000 0135 {
-; 0000 0136 pm = pm60;
-	__MOVEWRR 9,10,13,14
-; 0000 0137 m = m60;
-	__MOVEWRR 7,8,11,12
-; 0000 0138 }
-; 0000 0139             r_1 = 0;
+_0x66:
+	__PUTW1R 3,4
+	RJMP _0x44
+_0x41:
+	__MOVEWRR 9,10,7,8
+; 0000 011E         if (a > 0)
 _0x44:
+	CLR  R0
+	CP   R0,R3
+	CPC  R0,R4
+	BRSH _0x45
+; 0000 011F         {
+; 0000 0120             timer2 = 0;
 	RCALL SUBOPT_0x7
-; 0000 013A             r_2 = 0;
-; 0000 013B             PORTD = 255;
-; 0000 013C             r_3 = 0;
-; 0000 013D                 timer2 = 0;
-; 0000 013E                 while (timer2 < 10000);
-_0x4B:
-	RCALL SUBOPT_0x8
-	BRLO _0x4B
-; 0000 013F 
-; 0000 0140                 timer2 = 0;
-	RCALL SUBOPT_0x4
-; 0000 0141                 while (timer2 < 30000) vivod(pm-24);
-_0x4E:
-	RCALL SUBOPT_0x9
-	BRSH _0x50
-	__GETW2R 9,10
-	SBIW R26,24
+; 0000 0121             while (timer2 < 150000) vivod(a);
+_0x46:
+	RCALL SUBOPT_0x5
+	__CPD2N 0x249F0
+	BRSH _0x48
+	__GETW2R 3,4
 	RCALL _vivod
-	RJMP _0x4E
-_0x50:
-; 0000 0142 PORTB.0 = 0;
-	RCALL SUBOPT_0x7
-; 0000 0143             r_2 = 0;
-; 0000 0144             PORTD = 255;
-; 0000 0145             r_3 = 0;
-; 0000 0146                 timer2 = 0;
-; 0000 0147                 while (timer2 < 10000);
-_0x57:
-	RCALL SUBOPT_0x8
-	BRLO _0x57
-; 0000 0148                 timer2 = 0;
-	RCALL SUBOPT_0x4
-; 0000 0149                 while (timer2 < 30000) vivod(m-24);
-_0x5A:
-	RCALL SUBOPT_0x9
-	BRSH _0x5C
-	__GETW2R 7,8
-	SBIW R26,24
-	RCALL _vivod
-	RJMP _0x5A
-_0x5C:
-; 0000 014B PORTB.0 = 0;
-	CBI  0x5,0
-; 0000 014C             r_2 = 0;
-	CBI  0x5,1
-; 0000 014D             PORTD = 255;
-	LDI  R30,LOW(255)
-	OUT  0xB,R30
-; 0000 014E             r_3 = 0;
-	CBI  0x5,2
-; 0000 014F 
-; 0000 0150 //++++++++
-; 0000 0151             sum += a;
+	RJMP _0x46
+_0x48:
+; 0000 0122 sum += a;
 	__ADDWRR 5,6,3,4
-; 0000 0152             a = 0;
+; 0000 0123             a = 0;
 	CLR  R3
 	CLR  R4
-; 0000 0153             kol--;
+; 0000 0124             kol--;
 	LDS  R30,_kol
 	SUBI R30,LOW(1)
 	STS  _kol,R30
-; 0000 0154             r_1 = 0;
-	CBI  0x5,0
-; 0000 0155             r_2 = 0;
-	CBI  0x5,1
-; 0000 0156             PORTD = seg[kol];
-	LDI  R31,0
-	RCALL SUBOPT_0x2
-; 0000 0157             r_3 = 1;
-	SBI  0x5,2
-; 0000 0158             if (kol == 0)
+; 0000 0125             r_1 = 0;
+	RCALL SUBOPT_0x8
+; 0000 0126             r_2 = 0;
+; 0000 0127             PORTD = seg[kol];
+; 0000 0128             r_3 = 1;
+	RCALL SUBOPT_0x4
+; 0000 0129             timer2 = 0;
+; 0000 012A             while (timer2 < 10000);
+_0x4F:
+	RCALL SUBOPT_0x9
+	BRLO _0x4F
+; 0000 012B             if (kol == 0)
 	LDS  R30,_kol
 	CPI  R30,0
-	BRNE _0x69
-; 0000 0159             {
-; 0000 015A                 r_3 = 0;
+	BRNE _0x52
+; 0000 012C             {
+; 0000 012D                 r_3 = 0;
 	CBI  0x5,2
-; 0000 015B                 timer2 = 0;
-	RCALL SUBOPT_0x4
-; 0000 015C                 while (timer2 < 30000);
-_0x6C:
-	RCALL SUBOPT_0x9
-	BRLO _0x6C
-; 0000 015D                 if (sum == 1000) sum = 999;
+; 0000 012E                 if (sum == 1000) sum = 999;
 	LDI  R30,LOW(1000)
 	LDI  R31,HIGH(1000)
 	CP   R30,R5
 	CPC  R31,R6
-	BRNE _0x6F
+	BRNE _0x55
 	LDI  R30,LOW(999)
 	LDI  R31,HIGH(999)
 	__PUTW1R 5,6
-; 0000 015E                  while (timer2 < 500000) vivod(sum);
-_0x6F:
-_0x70:
+; 0000 012F                 while (timer2 < 500000) vivod(sum);
+_0x55:
+_0x56:
 	RCALL SUBOPT_0x5
-	__CPD2N 0x7A120
-	BRSH _0x72
+	RCALL SUBOPT_0x6
+	BRSH _0x58
 	__GETW2R 5,6
 	RCALL _vivod
-	RJMP _0x70
-_0x72:
-; 0000 015F sum = 0;
+	RJMP _0x56
+_0x58:
+; 0000 0130 sum = 0;
 	CLR  R5
 	CLR  R6
-; 0000 0160                  kol = 10;
+; 0000 0131                 r_1 = 0;
+	RCALL SUBOPT_0x8
+; 0000 0132                 r_2 = 0;
+; 0000 0133                 PORTD = seg[kol];
+; 0000 0134                 r_3 = 1;
+	SBI  0x5,2
+; 0000 0135                 kol = 10;
 	LDI  R30,LOW(10)
 	STS  _kol,R30
-; 0000 0161                  PORTD = 255;
-	LDI  R30,LOW(255)
-	OUT  0xB,R30
-; 0000 0162             }
-; 0000 0163         }
-_0x69:
-; 0000 0164       }
-_0x3C:
-	RJMP _0x27
-; 0000 0165 }
-_0x73:
-	RJMP _0x73
+; 0000 0136                 timer2 = 0;
+	RCALL SUBOPT_0x7
+; 0000 0137                 while (timer2 < 10000);
+_0x5F:
+	RCALL SUBOPT_0x9
+	BRLO _0x5F
+; 0000 0138             }
+; 0000 0139         }
+_0x52:
+; 0000 013A       }
+_0x45:
+	RJMP _0x30
+; 0000 013B }
+_0x62:
+	RJMP _0x62
 ; .FEND
 ;
 
 	.DSEG
-_m70:
-	.BYTE 0x2
-_pm70:
-	.BYTE 0x2
 _m80:
 	.BYTE 0x2
 _pm80:
@@ -2108,7 +1997,7 @@ SUBOPT_0x1:
 	CALL __DIVW21
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:5 WORDS
 SUBOPT_0x2:
 	SUBI R30,LOW(-_seg*2)
 	SBCI R31,HIGH(-_seg*2)
@@ -2134,8 +2023,9 @@ SUBOPT_0x3:
 	CALL __MULW12
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:32 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:5 WORDS
 SUBOPT_0x4:
+	SBI  0x5,2
 	LDI  R30,LOW(0)
 	STS  _timer2,R30
 	STS  _timer2+1,R30
@@ -2143,7 +2033,7 @@ SUBOPT_0x4:
 	STS  _timer2+3,R30
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 7 TIMES, CODE SIZE REDUCTION:33 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:21 WORDS
 SUBOPT_0x5:
 	LDS  R26,_timer2
 	LDS  R27,_timer2+1
@@ -2151,30 +2041,33 @@ SUBOPT_0x5:
 	LDS  R25,_timer2+3
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:12 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
 SUBOPT_0x6:
-	__CPD2N 0x7530
+	__CPD2N 0x7A120
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x7:
+	LDI  R30,LOW(0)
+	STS  _timer2,R30
+	STS  _timer2+1,R30
+	STS  _timer2+2,R30
+	STS  _timer2+3,R30
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-SUBOPT_0x7:
+SUBOPT_0x8:
 	CBI  0x5,0
 	CBI  0x5,1
-	LDI  R30,LOW(255)
-	OUT  0xB,R30
-	CBI  0x5,2
-	RJMP SUBOPT_0x4
+	LDS  R30,_kol
+	LDI  R31,0
+	RJMP SUBOPT_0x2
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
-SUBOPT_0x8:
+SUBOPT_0x9:
 	RCALL SUBOPT_0x5
 	__CPD2N 0x2710
 	RET
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x9:
-	RCALL SUBOPT_0x5
-	RJMP SUBOPT_0x6
 
 
 	.CSEG

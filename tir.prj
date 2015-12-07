@@ -35,7 +35,7 @@ EditorPanel1=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp1=1200061027
+TimeStamp1=1200074874
 =======
 TimeStamp1=1200055150
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -161,8 +161,8 @@ LinkageInformationPresent=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-COFFileTimeStamp=1200061261
-Build=91
+COFFileTimeStamp=1200074877
+Build=113
 =======
 COFFileTimeStamp=1200055216
 Build=89
@@ -295,7 +295,7 @@ COFFileTimeStamp=-1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Build=91
+Build=113
 =======
 Build=89
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -395,7 +395,7 @@ VerifyProgramming=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-ProgrammingCounter=19
+ProgrammingCounter=32
 =======
 ProgrammingCounter=18
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -434,8 +434,8 @@ L16=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L17=Build: 90
-L18=1231 line(s) compiled
+L17=Build: 112
+L18=1189 line(s) compiled
 =======
 =======
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -455,11 +455,11 @@ L24=Data Stack area: 0x100 to 0x2FF
 L25=Data Stack size: 512 byte(s)
 L26=Estimated Data Stack usage: 7 byte(s)
 L27=
-L28=RAM Global variables area: 0x300 to 0x318
-L29=RAM Global variables size: 25 byte(s)
+L28=RAM Global variables area: 0x300 to 0x314
+L29=RAM Global variables size: 21 byte(s)
 L30=
-L31=Hardware Stack area: 0x319 to 0x8FF
-L32=Hardware Stack size: 1511 byte(s)
+L31=Hardware Stack area: 0x315 to 0x8FF
+L32=Hardware Stack size: 1515 byte(s)
 L33=
 L34=Heap size: 0 byte(s)
 L35=
@@ -468,7 +468,7 @@ L36=EEPROM usage: 0 byte(s), 0,0% of EEPROM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L37=Program size: 858 words (1716 bytes), 5,2% of FLASH
+L37=Program size: 773 words (1546 bytes), 4,7% of FLASH
 =======
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -482,7 +482,7 @@ L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 Lines=38
-L38=110 words (220 bytes), 11,4% reduced by Code Compression
+L38=66 words (132 bytes), 7,9% reduced by Code Compression
 [BuildInfoAssembler]
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
@@ -491,7 +491,7 @@ L3=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2268): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
+L4=D:\Project\Micro\AVR\tir\Debug\List\tir.asm(2161): No EEPROM data, deleting D:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 =======
 L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2254): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -512,7 +512,7 @@ L8=---------------------------------------------------------------
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L9=[.cseg] 0x000000 0x0006b4   1706     10   1716   32768   5.2%
+L9=[.cseg] 0x000000 0x00060a   1536     10   1546   32768   4.7%
 =======
 L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -525,7 +525,7 @@ L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 =======
 L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-L10=[.dseg] 0x000100 0x000319      0     25     25    2048   1.2%
+L10=[.dseg] 0x000100 0x000315      0     21     21    2048   1.0%
 L11=[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 L12=
 Lines=12
@@ -542,7 +542,7 @@ ScrollPosY=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200061263
+TimeStamp=1200074890
 =======
 TimeStamp=1200055250
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -570,11 +570,11 @@ F1=tir.c
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200061027
-Row=0
-Column=0
+TimeStamp=1200074874
+Row=280
+Column=21
 ScrollPosX=0
-ScrollPosY=285
+ScrollPosY=263
 =======
 TimeStamp=1200055150
 Row=137
@@ -632,7 +632,7 @@ BK8=-1
 BK9=-1
 [HeadersList]
 Files=1
-F1=F:\Project\Micro\AVR\tir\tir.c
+F1=D:\Project\Micro\AVR\tir\tir.c
 [Header1]
 Files=3
 F1=C:\cvavr\inc\mega328p.h
