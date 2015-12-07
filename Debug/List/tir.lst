@@ -1,17 +1,5 @@
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-AVRASM ver. 2.1.30  F:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 14:28:24 2015
-=======
-AVRASM ver. 2.1.30  F:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 12:29:30 2015
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-AVRASM ver. 2.1.30  F:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 12:29:30 2015
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-AVRASM ver. 2.1.30  F:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 12:29:30 2015
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
+AVRASM ver. 2.1.30  F:\Project\Micro\AVR\tir\Debug\List\tir.asm Mon Dec 07 15:26:25 2015
 
 F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1090): warning: Register r3 already defined by the .DEF directive
 F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1091): warning: Register r4 already defined by the .DEF directive
@@ -1391,19 +1379,7 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0000a7 93ba      	ST   -Y,R27
 0000a8 93aa      	ST   -Y,R26
                  ;	vhod -> Y+0
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000a9 d21e      	RCALL SUBOPT_0x0
-=======
-0000a9 d22f      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000a9 d22f      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000a9 d22f      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 0000aa 36a4     +CPI R26 , LOW ( 0x64 )
 0000ab e0e0     +LDI R30 , HIGH ( 0x64 )
@@ -1424,27 +1400,9 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 0051             r_2 = 0;
 0000b5 9829      	CBI  0x5,1
                  ; 0000 0052             r_1 = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000b6 d21a      	RCALL SUBOPT_0x1
                  ; 0000 0053             PORTD = seg[vhod / 100];
 0000b7 d221      	RCALL SUBOPT_0x2
-=======
-0000b6 d22b      	RCALL SUBOPT_0x1
-                 ; 0000 0053             PORTD = seg[vhod / 100];
-0000b7 d232      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000b6 d22b      	RCALL SUBOPT_0x1
-                 ; 0000 0053             PORTD = seg[vhod / 100];
-0000b7 d232      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000b6 d22b      	RCALL SUBOPT_0x1
-                 ; 0000 0053             PORTD = seg[vhod / 100];
-0000b7 d232      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  ; 0000 0054             r_1 = 1;
 0000b8 9a28      	SBI  0x5,0
                  ; 0000 0055         }
@@ -1455,19 +1413,7 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0000b9 c04a      	RJMP _0x10
                  _0x6:
                  ; 0000 0059     if(timer < 200)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000ba d20d      	RCALL SUBOPT_0x0
-=======
-0000ba d21e      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000ba d21e      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000ba d21e      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 0000bb 3ca8     +CPI R26 , LOW ( 0xC8 )
 0000bc e0e0     +LDI R30 , HIGH ( 0xC8 )
@@ -1490,36 +1436,12 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 005F             r_3 = 0;
 0000c7 982a      	CBI  0x5,2
                  ; 0000 0060             PORTD = seg[(vhod / 10) - (vhod/100)*10];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000c8 d215      	RCALL SUBOPT_0x3
-=======
-0000c8 d226      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000c8 d226      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000c8 d226      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 0000c9 01df      	MOVW R26,R30
 0000ca 01fb      	MOVW R30,R22
 0000cb 1bea      	SUB  R30,R26
 0000cc 0bfb      	SBC  R31,R27
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000cd d20b      	RCALL SUBOPT_0x2
-=======
-0000cd d21c      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000cd d21c      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000cd d21c      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  ; 0000 0061             r_2 = 1;
 0000ce 9a29      	SBI  0x5,1
                  ; 0000 0062         }
@@ -1530,19 +1452,7 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0000cf c034      	RJMP _0x1B
                  _0x11:
                  ; 0000 0066     if(timer<300)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000d0 d1f7      	RCALL SUBOPT_0x0
-=======
-0000d0 d208      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000d0 d208      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000d0 d208      	RCALL SUBOPT_0x0
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 0000d1 32ac     +CPI R26 , LOW ( 0x12C )
 0000d2 e0e1     +LDI R30 , HIGH ( 0x12C )
@@ -1563,9 +1473,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 006B             r_3 = 0;
 0000dc 982a      	CBI  0x5,2
                  ; 0000 006C             r_1 = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000dd d1f3      	RCALL SUBOPT_0x1
                  ; 0000 006D             PORTD = seg[vhod  - (vhod/100)*100 - ((vhod / 10) - (vhod/100)*10)*10];
 0000de e6a4      	LDI  R26,LOW(100)
@@ -1574,56 +1481,16 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0000e2 81a8      	LD   R26,Y
 0000e3 81b9      	LDD  R27,Y+1
 0000e4 940e 0353 	CALL __SWAPW12
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-0000dd d204      	RCALL SUBOPT_0x1
-                 ; 0000 006D             PORTD = seg[vhod  - (vhod/100)*100 - ((vhod / 10) - (vhod/100)*10)*10];
-0000de e6a4      	LDI  R26,LOW(100)
-0000df e0b0      	LDI  R27,HIGH(100)
-0000e0 940e 032f 	CALL __MULW12
-0000e2 81a8      	LD   R26,Y
-0000e3 81b9      	LDD  R27,Y+1
-0000e4 940e 035a 	CALL __SWAPW12
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000dd d204      	RCALL SUBOPT_0x1
-                 ; 0000 006D             PORTD = seg[vhod  - (vhod/100)*100 - ((vhod / 10) - (vhod/100)*10)*10];
-0000de e6a4      	LDI  R26,LOW(100)
-0000df e0b0      	LDI  R27,HIGH(100)
-0000e0 940e 032f 	CALL __MULW12
-0000e2 81a8      	LD   R26,Y
-0000e3 81b9      	LDD  R27,Y+1
-0000e4 940e 035a 	CALL __SWAPW12
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 0000e6 1bea      	SUB  R30,R26
 0000e7 0bfb      	SBC  R31,R27
 0000e8 93ff      	PUSH R31
 0000e9 93ef      	PUSH R30
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000ea d1f3      	RCALL SUBOPT_0x3
-=======
-0000ea d204      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000ea d204      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000ea d204      	RCALL SUBOPT_0x3
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 0000eb 01db      	MOVW R26,R22
 0000ec 1bae      	SUB  R26,R30
 0000ed 0bbf      	SBC  R27,R31
 0000ee e0ea      	LDI  R30,LOW(10)
 0000ef e0f0      	LDI  R31,HIGH(10)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0000f0 940e 0328 	CALL __MULW12
 0000f2 91af      	POP  R26
 0000f3 91bf      	POP  R27
@@ -1631,33 +1498,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0000f6 1bea      	SUB  R30,R26
 0000f7 0bfb      	SBC  R31,R27
 0000f8 d1e0      	RCALL SUBOPT_0x2
-=======
-0000f0 940e 032f 	CALL __MULW12
-0000f2 91af      	POP  R26
-0000f3 91bf      	POP  R27
-0000f4 940e 035a 	CALL __SWAPW12
-0000f6 1bea      	SUB  R30,R26
-0000f7 0bfb      	SBC  R31,R27
-0000f8 d1f1      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000f0 940e 032f 	CALL __MULW12
-0000f2 91af      	POP  R26
-0000f3 91bf      	POP  R27
-0000f4 940e 035a 	CALL __SWAPW12
-0000f6 1bea      	SUB  R30,R26
-0000f7 0bfb      	SBC  R31,R27
-0000f8 d1f1      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0000f0 940e 032f 	CALL __MULW12
-0000f2 91af      	POP  R26
-0000f3 91bf      	POP  R27
-0000f4 940e 035a 	CALL __SWAPW12
-0000f6 1bea      	SUB  R30,R26
-0000f7 0bfb      	SBC  R31,R27
-0000f8 d1f1      	RCALL SUBOPT_0x2
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  ; 0000 006E             r_3 = 1;
 0000f9 9a2a      	SBI  0x5,2
                  ; 0000 006F         }
@@ -1990,25 +1830,11 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0001c6 f419      	BRNE _0x2D
 0001c7 e5ea      	LDI  R30,LOW(90)
 0001c8 e0f0      	LDI  R31,HIGH(90)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0001c9 c002      	RJMP _0x74
                  _0x2D:
 0001ca e5e0      	LDI  R30,LOW(80)
 0001cb e0f0      	LDI  R31,HIGH(80)
                  _0x74:
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-0001c9 c002      	RJMP _0x71
-                 _0x2D:
-0001ca e5e0      	LDI  R30,LOW(80)
-0001cb e0f0      	LDI  R31,HIGH(80)
-                 _0x71:
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 0001cc 2e3e     +MOV R3 , R30
 0001cd 2e4f     +MOV R4 , R31
@@ -2036,33 +1862,11 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0001e7 f419      	BRNE _0x31
 0001e8 e4e6      	LDI  R30,LOW(70)
 0001e9 e0f0      	LDI  R31,HIGH(70)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0001ea c002      	RJMP _0x75
                  _0x31:
 0001eb e3ec      	LDI  R30,LOW(60)
 0001ec e0f0      	LDI  R31,HIGH(60)
                  _0x75:
-=======
-0001ea c002      	RJMP _0x72
-                 _0x31:
-0001eb e3ec      	LDI  R30,LOW(60)
-0001ec e0f0      	LDI  R31,HIGH(60)
-=======
-0001ea c002      	RJMP _0x72
-                 _0x31:
-0001eb e3ec      	LDI  R30,LOW(60)
-0001ec e0f0      	LDI  R31,HIGH(60)
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-0001ea c002      	RJMP _0x72
-                 _0x31:
-0001eb e3ec      	LDI  R30,LOW(60)
-0001ec e0f0      	LDI  R31,HIGH(60)
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-                 _0x72:
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 0001ed 2e3e     +MOV R3 , R30
 0001ee 2e4f     +MOV R4 , R31
@@ -2090,29 +1894,11 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000208 f419      	BRNE _0x35
 000209 e3e2      	LDI  R30,LOW(50)
 00020a e0f0      	LDI  R31,HIGH(50)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 00020b c002      	RJMP _0x76
                  _0x35:
 00020c e2e8      	LDI  R30,LOW(40)
 00020d e0f0      	LDI  R31,HIGH(40)
                  _0x76:
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-00020b c002      	RJMP _0x73
-                 _0x35:
-00020c e2e8      	LDI  R30,LOW(40)
-00020d e0f0      	LDI  R31,HIGH(40)
-=======
-00020b c002      	RJMP _0x73
-                 _0x35:
-00020c e2e8      	LDI  R30,LOW(40)
-00020d e0f0      	LDI  R31,HIGH(40)
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-                 _0x73:
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 00020e 2e3e     +MOV R3 , R30
 00020f 2e4f     +MOV R4 , R31
@@ -2140,25 +1926,11 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000223 f419      	BRNE _0x39
 000224 e1ee      	LDI  R30,LOW(30)
 000225 e0f0      	LDI  R31,HIGH(30)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000226 c002      	RJMP _0x77
                  _0x39:
 000227 e1e4      	LDI  R30,LOW(20)
 000228 e0f0      	LDI  R31,HIGH(20)
                  _0x77:
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000226 c002      	RJMP _0x74
-                 _0x39:
-000227 e1e4      	LDI  R30,LOW(20)
-000228 e0f0      	LDI  R31,HIGH(20)
-                 _0x74:
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                 +
 000229 2e3e     +MOV R3 , R30
 00022a 2e4f     +MOV R4 , R31
@@ -2175,9 +1947,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 00022f 1403      	CP   R0,R3
 000230 0404      	CPC  R0,R4
 000231 f008      	BRLO PC+2
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000232 c093      	RJMP _0x3C
                  ; 0000 011C         {
                  ; 0000 011D             timer2 = 0;
@@ -2210,71 +1979,10 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                 +
 000244 9070 030c+LDS R7 , 0 + ( _m100 )
 000246 9080 030d+LDS R8 , 0 + ( _m100 ) + 1
-=======
-000232 c0a4      	RJMP _0x3C
-                 ; 0000 011C         {
-                 ; 0000 011D             timer2 = 0;
-=======
-000232 c0a4      	RJMP _0x3C
-                 ; 0000 011C         {
-                 ; 0000 011D             timer2 = 0;
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-000232 c0a4      	RJMP _0x3C
-                 ; 0000 011C         {
-                 ; 0000 011D             timer2 = 0;
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000233 d0cd      	RCALL SUBOPT_0x4
-                 ; 0000 011E             while (timer2 < 100000) vivod(a);
-                 _0x3D:
-000234 d0d6      	RCALL SUBOPT_0x5
-                +
-000235 3aa0     +CPI R26 , LOW ( 0x186A0 )
-000236 e8e6     +LDI R30 , HIGH ( 0x186A0 )
-000237 07be     +CPC R27 , R30
-000238 e0e1     +LDI R30 , BYTE3 ( 0x186A0 )
-000239 078e     +CPC R24 , R30
-00023a e0e0     +LDI R30 , BYTE4 ( 0x186A0 )
-00023b 079e     +CPC R25 , R30
-                 	__CPD2N 0x186A0
-00023c f420      	BRSH _0x3F
-                +
-00023d 2da3     +MOV R26 , R3
-00023e 2db4     +MOV R27 , R4
-                 	__GETW2R 3,4
-00023f de67      	RCALL _vivod
-000240 cff3      	RJMP _0x3D
-                 _0x3F:
-                 ; 0000 0120 if (a==100)
-000241 e6e4      	LDI  R30,LOW(100)
-000242 e0f0      	LDI  R31,HIGH(100)
-000243 15e3      	CP   R30,R3
-000244 05f4      	CPC  R31,R4
-000245 f441      	BRNE _0x40
-                 ; 0000 0121 {
-                 ; 0000 0122 pm = pm100;
-                +
-000246 9090 030e+LDS R9 , 0 + ( _pm100 )
-000248 90a0 030f+LDS R10 , 0 + ( _pm100 ) + 1
-                 	__GETWRMN 9,10,0,_pm100
-                 ; 0000 0123 m = m100;
-                +
-00024a 9070 030c+LDS R7 , 0 + ( _m100 )
-00024c 9080 030d+LDS R8 , 0 + ( _m100 ) + 1
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  	__GETWRMN 7,8,0,_m100
                  ; 0000 0124 } ;
                  _0x40:
                  ; 0000 0125 if (a==80)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000248 e5e0      	LDI  R30,LOW(80)
 000249 e0f0      	LDI  R31,HIGH(80)
 00024a 15e3      	CP   R30,R3
@@ -2290,52 +1998,10 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                 +
 000251 9070 0308+LDS R7 , 0 + ( _m90 )
 000253 9080 0309+LDS R8 , 0 + ( _m90 ) + 1
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-00024e e5e0      	LDI  R30,LOW(80)
-00024f e0f0      	LDI  R31,HIGH(80)
-000250 15e3      	CP   R30,R3
-000251 05f4      	CPC  R31,R4
-000252 f441      	BRNE _0x41
-                 ; 0000 0126 {
-                 ; 0000 0127 pm = pm90;
-                +
-000253 9090 030a+LDS R9 , 0 + ( _pm90 )
-000255 90a0 030b+LDS R10 , 0 + ( _pm90 ) + 1
-                 	__GETWRMN 9,10,0,_pm90
-                 ; 0000 0128 m = m90;
-                +
-000257 9070 0308+LDS R7 , 0 + ( _m90 )
-000259 9080 0309+LDS R8 , 0 + ( _m90 ) + 1
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-00024e e5e0      	LDI  R30,LOW(80)
-00024f e0f0      	LDI  R31,HIGH(80)
-000250 15e3      	CP   R30,R3
-000251 05f4      	CPC  R31,R4
-000252 f441      	BRNE _0x41
-                 ; 0000 0126 {
-                 ; 0000 0127 pm = pm90;
-                +
-000253 9090 030a+LDS R9 , 0 + ( _pm90 )
-000255 90a0 030b+LDS R10 , 0 + ( _pm90 ) + 1
-                 	__GETWRMN 9,10,0,_pm90
-                 ; 0000 0128 m = m90;
-                +
-000257 9070 0308+LDS R7 , 0 + ( _m90 )
-000259 9080 0309+LDS R8 , 0 + ( _m90 ) + 1
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  	__GETWRMN 7,8,0,_m90
                  ; 0000 0129 };
                  _0x41:
                  ; 0000 012A if (a==60)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000255 e3ec      	LDI  R30,LOW(60)
 000256 e0f0      	LDI  R31,HIGH(60)
 000257 15e3      	CP   R30,R3
@@ -2351,52 +2017,10 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                 +
 00025e 9070 0304+LDS R7 , 0 + ( _m80 )
 000260 9080 0305+LDS R8 , 0 + ( _m80 ) + 1
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-00025b e3ec      	LDI  R30,LOW(60)
-00025c e0f0      	LDI  R31,HIGH(60)
-00025d 15e3      	CP   R30,R3
-00025e 05f4      	CPC  R31,R4
-00025f f441      	BRNE _0x42
-                 ; 0000 012B {
-                 ; 0000 012C pm = pm80;
-                +
-000260 9090 0306+LDS R9 , 0 + ( _pm80 )
-000262 90a0 0307+LDS R10 , 0 + ( _pm80 ) + 1
-                 	__GETWRMN 9,10,0,_pm80
-                 ; 0000 012D m = m80;
-                +
-000264 9070 0304+LDS R7 , 0 + ( _m80 )
-000266 9080 0305+LDS R8 , 0 + ( _m80 ) + 1
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-00025b e3ec      	LDI  R30,LOW(60)
-00025c e0f0      	LDI  R31,HIGH(60)
-00025d 15e3      	CP   R30,R3
-00025e 05f4      	CPC  R31,R4
-00025f f441      	BRNE _0x42
-                 ; 0000 012B {
-                 ; 0000 012C pm = pm80;
-                +
-000260 9090 0306+LDS R9 , 0 + ( _pm80 )
-000262 90a0 0307+LDS R10 , 0 + ( _pm80 ) + 1
-                 	__GETWRMN 9,10,0,_pm80
-                 ; 0000 012D m = m80;
-                +
-000264 9070 0304+LDS R7 , 0 + ( _m80 )
-000266 9080 0305+LDS R8 , 0 + ( _m80 ) + 1
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  	__GETWRMN 7,8,0,_m80
                  ; 0000 012E } ;
                  _0x42:
                  ; 0000 012F if(a==40)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000262 e2e8      	LDI  R30,LOW(40)
 000263 e0f0      	LDI  R31,HIGH(40)
 000264 15e3      	CP   R30,R3
@@ -2412,40 +2036,10 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                 +
 00026b 9070 0300+LDS R7 , 0 + ( _m70 )
 00026d 9080 0301+LDS R8 , 0 + ( _m70 ) + 1
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000268 e2e8      	LDI  R30,LOW(40)
-000269 e0f0      	LDI  R31,HIGH(40)
-00026a 15e3      	CP   R30,R3
-00026b 05f4      	CPC  R31,R4
-00026c f441      	BRNE _0x43
-                 ; 0000 0130 {
-                 ; 0000 0131 pm = pm70;
-                +
-00026d 9090 0302+LDS R9 , 0 + ( _pm70 )
-00026f 90a0 0303+LDS R10 , 0 + ( _pm70 ) + 1
-                 	__GETWRMN 9,10,0,_pm70
-                 ; 0000 0132 m = m70;
-                +
-000271 9070 0300+LDS R7 , 0 + ( _m70 )
-000273 9080 0301+LDS R8 , 0 + ( _m70 ) + 1
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  	__GETWRMN 7,8,0,_m70
                  ; 0000 0133 };
                  _0x43:
                  ; 0000 0134 if(a==20)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 00026f e1e4      	LDI  R30,LOW(20)
 000270 e0f0      	LDI  R31,HIGH(20)
 000271 15e3      	CP   R30,R3
@@ -2461,59 +2055,17 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                 +
 000276 2c7b     +MOV R7 , R11
 000277 2c8c     +MOV R8 , R12
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000275 e1e4      	LDI  R30,LOW(20)
-000276 e0f0      	LDI  R31,HIGH(20)
-000277 15e3      	CP   R30,R3
-000278 05f4      	CPC  R31,R4
-000279 f421      	BRNE _0x44
-                 ; 0000 0135 {
-                 ; 0000 0136 pm = pm60;
-                +
-00027a 2c9d     +MOV R9 , R13
-00027b 2cae     +MOV R10 , R14
-                 	__MOVEWRR 9,10,13,14
-                 ; 0000 0137 m = m60;
-                +
-00027c 2c7b     +MOV R7 , R11
-00027d 2c8c     +MOV R8 , R12
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  	__MOVEWRR 7,8,11,12
                  ; 0000 0138 }
                  ; 0000 0139             r_1 = 0;
                  _0x44:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000278 d092      	RCALL SUBOPT_0x7
-=======
-00027e d095      	RCALL SUBOPT_0x6
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-00027e d095      	RCALL SUBOPT_0x6
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-00027e d095      	RCALL SUBOPT_0x6
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  ; 0000 013A             r_2 = 0;
                  ; 0000 013B             PORTD = 255;
                  ; 0000 013C             r_3 = 0;
                  ; 0000 013D                 timer2 = 0;
                  ; 0000 013E                 while (timer2 < 10000);
                  _0x4B:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 000279 d097      	RCALL SUBOPT_0x8
 00027a f3f0      	BRLO _0x4B
                  ; 0000 013F 
@@ -2651,178 +2203,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 0165 }
                  _0x73:
 0002c7 cfff      	RJMP _0x73
-=======
-00027f d09a      	RCALL SUBOPT_0x7
-000280 f428      	BRSH _0x4D
-                +
-000281 2da9     +MOV R26 , R9
-000282 2dba     +MOV R27 , R10
-                 	__GETW2R 9,10
-=======
-00027f d09a      	RCALL SUBOPT_0x7
-000280 f428      	BRSH _0x4D
-                +
-000281 2da9     +MOV R26 , R9
-000282 2dba     +MOV R27 , R10
-                 	__GETW2R 9,10
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-00027f d09a      	RCALL SUBOPT_0x7
-000280 f428      	BRSH _0x4D
-                +
-000281 2da9     +MOV R26 , R9
-000282 2dba     +MOV R27 , R10
-                 	__GETW2R 9,10
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000283 9758      	SBIW R26,24
-000284 de22      	RCALL _vivod
-000285 cff9      	RJMP _0x4B
-                 _0x4D:
-                 ; 0000 0140 PORTB.0 = 0;
-000286 d08d      	RCALL SUBOPT_0x6
-                 ; 0000 0141             r_2 = 0;
-                 ; 0000 0142             PORTD = 255;
-                 ; 0000 0143             r_3 = 0;
-                 ; 0000 0144                 timer2 = 0;
-                 ; 0000 0145                 while (timer2 < 10000);
-                 _0x54:
-000287 d083      	RCALL SUBOPT_0x5
-                +
-000288 31a0     +CPI R26 , LOW ( 0x2710 )
-000289 e2e7     +LDI R30 , HIGH ( 0x2710 )
-00028a 07be     +CPC R27 , R30
-00028b e0e0     +LDI R30 , BYTE3 ( 0x2710 )
-00028c 078e     +CPC R24 , R30
-00028d e0e0     +LDI R30 , BYTE4 ( 0x2710 )
-00028e 079e     +CPC R25 , R30
-                 	__CPD2N 0x2710
-00028f f3b8      	BRLO _0x54
-                 ; 0000 0146                 timer2 = 0;
-000290 d070      	RCALL SUBOPT_0x4
-                 ; 0000 0147                 while (timer2 < 50000) vivod(m-24);
-                 _0x57:
-000291 d088      	RCALL SUBOPT_0x7
-000292 f428      	BRSH _0x59
-                +
-000293 2da7     +MOV R26 , R7
-000294 2db8     +MOV R27 , R8
-                 	__GETW2R 7,8
-000295 9758      	SBIW R26,24
-000296 de10      	RCALL _vivod
-000297 cff9      	RJMP _0x57
-                 _0x59:
-                 ; 0000 0149 PORTB.0 = 0;
-000298 9828      	CBI  0x5,0
-                 ; 0000 014A             r_2 = 0;
-000299 9829      	CBI  0x5,1
-                 ; 0000 014B             PORTD = 255;
-00029a efef      	LDI  R30,LOW(255)
-00029b b9eb      	OUT  0xB,R30
-                 ; 0000 014C             r_3 = 0;
-00029c 982a      	CBI  0x5,2
-                 ; 0000 014D 
-                 ; 0000 014E //++++++++
-                 ; 0000 014F             sum += a;
-                +
-00029d 0c53     +ADD R5 , R3
-00029e 1c64     +ADC R6 , R4
-                 	__ADDWRR 5,6,3,4
-                 ; 0000 0150             a = 0;
-00029f 2433      	CLR  R3
-0002a0 2444      	CLR  R4
-                 ; 0000 0151             kol--;
-0002a1 91e0 0318 	LDS  R30,_kol
-0002a3 50e1      	SUBI R30,LOW(1)
-0002a4 93e0 0318 	STS  _kol,R30
-                 ; 0000 0152             r_1 = 0;
-0002a6 9828      	CBI  0x5,0
-                 ; 0000 0153             r_2 = 0;
-0002a7 9829      	CBI  0x5,1
-                 ; 0000 0154             PORTD = seg[kol];
-0002a8 e0f0      	LDI  R31,0
-0002a9 d040      	RCALL SUBOPT_0x2
-                 ; 0000 0155             r_3 = 1;
-0002aa 9a2a      	SBI  0x5,2
-                 ; 0000 0156             if (kol == 0)
-0002ab 91e0 0318 	LDS  R30,_kol
-0002ad 30e0      	CPI  R30,0
-0002ae f541      	BRNE _0x66
-                 ; 0000 0157             {
-                 ; 0000 0158                 r_3 = 0;
-0002af 982a      	CBI  0x5,2
-                 ; 0000 0159                 timer2 = 0;
-0002b0 d050      	RCALL SUBOPT_0x4
-                 ; 0000 015A                 while (timer2 < 30000);
-                 _0x69:
-0002b1 d059      	RCALL SUBOPT_0x5
-                +
-0002b2 33a0     +CPI R26 , LOW ( 0x7530 )
-0002b3 e7e5     +LDI R30 , HIGH ( 0x7530 )
-0002b4 07be     +CPC R27 , R30
-0002b5 e0e0     +LDI R30 , BYTE3 ( 0x7530 )
-0002b6 078e     +CPC R24 , R30
-0002b7 e0e0     +LDI R30 , BYTE4 ( 0x7530 )
-0002b8 079e     +CPC R25 , R30
-                 	__CPD2N 0x7530
-0002b9 f3b8      	BRLO _0x69
-                 ; 0000 015B                 if (sum == 1000) sum = 999;
-0002ba eee8      	LDI  R30,LOW(1000)
-0002bb e0f3      	LDI  R31,HIGH(1000)
-0002bc 15e5      	CP   R30,R5
-0002bd 05f6      	CPC  R31,R6
-0002be f421      	BRNE _0x6C
-0002bf eee7      	LDI  R30,LOW(999)
-0002c0 e0f3      	LDI  R31,HIGH(999)
-                +
-0002c1 2e5e     +MOV R5 , R30
-0002c2 2e6f     +MOV R6 , R31
-                 	__PUTW1R 5,6
-                 ; 0000 015C                  while (timer2 < 500000) vivod(sum);
-                 _0x6C:
-                 _0x6D:
-0002c3 d047      	RCALL SUBOPT_0x5
-                +
-0002c4 32a0     +CPI R26 , LOW ( 0x7A120 )
-0002c5 eae1     +LDI R30 , HIGH ( 0x7A120 )
-0002c6 07be     +CPC R27 , R30
-0002c7 e0e7     +LDI R30 , BYTE3 ( 0x7A120 )
-0002c8 078e     +CPC R24 , R30
-0002c9 e0e0     +LDI R30 , BYTE4 ( 0x7A120 )
-0002ca 079e     +CPC R25 , R30
-                 	__CPD2N 0x7A120
-0002cb f420      	BRSH _0x6F
-                +
-0002cc 2da5     +MOV R26 , R5
-0002cd 2db6     +MOV R27 , R6
-                 	__GETW2R 5,6
-0002ce ddd8      	RCALL _vivod
-0002cf cff3      	RJMP _0x6D
-                 _0x6F:
-                 ; 0000 015D sum = 0;
-0002d0 2455      	CLR  R5
-0002d1 2466      	CLR  R6
-                 ; 0000 015E                  kol = 10;
-0002d2 e0ea      	LDI  R30,LOW(10)
-0002d3 93e0 0318 	STS  _kol,R30
-                 ; 0000 015F                  PORTD = 255;
-0002d5 efef      	LDI  R30,LOW(255)
-0002d6 b9eb      	OUT  0xB,R30
-                 ; 0000 0160             }
-                 ; 0000 0161         }
-                 _0x66:
-                 ; 0000 0162       }
-                 _0x3C:
-0002d7 cea9      	RJMP _0x27
-                 ; 0000 0163 }
-                 _0x70:
-0002d8 cfff      	RJMP _0x70
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  ; .FEND
                  ;
                  
@@ -2853,9 +2233,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  	.CSEG
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:9 WORDS
                  SUBOPT_0x0:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 0002c8 91a0 0310 	LDS  R26,_timer
 0002ca 91b0 0311 	LDS  R27,_timer+1
 0002cc 9180 0312 	LDS  R24,_timer+2
@@ -2914,76 +2291,9 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0002fe 9180 0316 	LDS  R24,_timer2+2
 000300 9190 0317 	LDS  R25,_timer2+3
 000302 9508      	RET
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-0002d9 91a0 0310 	LDS  R26,_timer
-0002db 91b0 0311 	LDS  R27,_timer+1
-0002dd 9180 0312 	LDS  R24,_timer+2
-0002df 9190 0313 	LDS  R25,_timer+3
-0002e1 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-                 SUBOPT_0x1:
-0002e2 9828      	CBI  0x5,0
-0002e3 81a8      	LD   R26,Y
-0002e4 81b9      	LDD  R27,Y+1
-0002e5 e6e4      	LDI  R30,LOW(100)
-0002e6 e0f0      	LDI  R31,HIGH(100)
-0002e7 940e 0347 	CALL __DIVW21
-0002e9 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
-                 SUBOPT_0x2:
-0002ea 59e8      	SUBI R30,LOW(-_seg*2)
-0002eb 4fff      	SBCI R31,HIGH(-_seg*2)
-0002ec 9004      	LPM  R0,Z
-0002ed b80b      	OUT  0xB,R0
-0002ee 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:12 WORDS
-                 SUBOPT_0x3:
-0002ef 81a8      	LD   R26,Y
-0002f0 81b9      	LDD  R27,Y+1
-0002f1 e0ea      	LDI  R30,LOW(10)
-0002f2 e0f0      	LDI  R31,HIGH(10)
-0002f3 940e 0347 	CALL __DIVW21
-0002f5 01bf      	MOVW R22,R30
-0002f6 81a8      	LD   R26,Y
-0002f7 81b9      	LDD  R27,Y+1
-0002f8 e6e4      	LDI  R30,LOW(100)
-0002f9 e0f0      	LDI  R31,HIGH(100)
-0002fa 940e 0347 	CALL __DIVW21
-0002fc e0aa      	LDI  R26,LOW(10)
-0002fd e0b0      	LDI  R27,HIGH(10)
-0002fe 940e 032f 	CALL __MULW12
-000300 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:25 WORDS
-                 SUBOPT_0x4:
-000301 e0e0      	LDI  R30,LOW(0)
-000302 93e0 0314 	STS  _timer2,R30
-000304 93e0 0315 	STS  _timer2+1,R30
-000306 93e0 0316 	STS  _timer2+2,R30
-000308 93e0 0317 	STS  _timer2+3,R30
-00030a 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:27 WORDS
-                 SUBOPT_0x5:
-00030b 91a0 0314 	LDS  R26,_timer2
-00030d 91b0 0315 	LDS  R27,_timer2+1
-00030f 9180 0316 	LDS  R24,_timer2+2
-000311 9190 0317 	LDS  R25,_timer2+3
-000313 9508      	RET
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:12 WORDS
                  SUBOPT_0x6:
-<<<<<<< HEAD
                 +
 000303 33a0     +CPI R26 , LOW ( 0x7530 )
 000304 e7e5     +LDI R30 , HIGH ( 0x7530 )
@@ -2994,18 +2304,9 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000309 079e     +CPC R25 , R30
                  	__CPD2N 0x7530
 00030a 9508      	RET
-=======
-000314 9828      	CBI  0x5,0
-000315 9829      	CBI  0x5,1
-000316 efef      	LDI  R30,LOW(255)
-000317 b9eb      	OUT  0xB,R30
-000318 982a      	CBI  0x5,2
-000319 cfe7      	RJMP SUBOPT_0x4
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
                  SUBOPT_0x7:
-<<<<<<< HEAD
 00030b 9828      	CBI  0x5,0
 00030c 9829      	CBI  0x5,1
 00030d efef      	LDI  R30,LOW(255)
@@ -3031,51 +2332,10 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  SUBOPT_0x9:
 00031a dfdf      	RCALL SUBOPT_0x5
 00031b cfe7      	RJMP SUBOPT_0x6
-=======
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-                 SUBOPT_0x6:
-000314 9828      	CBI  0x5,0
-000315 9829      	CBI  0x5,1
-000316 efef      	LDI  R30,LOW(255)
-000317 b9eb      	OUT  0xB,R30
-000318 982a      	CBI  0x5,2
-000319 cfe7      	RJMP SUBOPT_0x4
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
-                 SUBOPT_0x7:
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-00031a dff0      	RCALL SUBOPT_0x5
-                +
-00031b 35a0     +CPI R26 , LOW ( 0xC350 )
-00031c ece3     +LDI R30 , HIGH ( 0xC350 )
-00031d 07be     +CPC R27 , R30
-00031e e0e0     +LDI R30 , BYTE3 ( 0xC350 )
-00031f 078e     +CPC R24 , R30
-000320 e0e0     +LDI R30 , BYTE4 ( 0xC350 )
-000321 079e     +CPC R25 , R30
-                 	__CPD2N 0xC350
-000322 9508      	RET
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  
                  
                  	.CSEG
                  __ANEGW1:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 00031c 95f1      	NEG  R31
 00031d 95e1      	NEG  R30
 00031e 40f0      	SBCI R31,0
@@ -3159,101 +2419,6 @@ F:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000357 2fae      	MOV  R26,R30
 000358 2de1      	MOV  R30,R1
 000359 9508      	RET
-=======
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-000323 95f1      	NEG  R31
-000324 95e1      	NEG  R30
-000325 40f0      	SBCI R31,0
-000326 9508      	RET
-                 
-                 __MULW12U:
-000327 9ffa      	MUL  R31,R26
-000328 2df0      	MOV  R31,R0
-000329 9feb      	MUL  R30,R27
-00032a 0df0      	ADD  R31,R0
-00032b 9fea      	MUL  R30,R26
-00032c 2de0      	MOV  R30,R0
-00032d 0df1      	ADD  R31,R1
-00032e 9508      	RET
-                 
-                 __MULW12:
-00032f d01c      	RCALL __CHKSIGNW
-000330 dff6      	RCALL __MULW12U
-000331 f40e      	BRTC __MULW121
-000332 dff0      	RCALL __ANEGW1
-                 __MULW121:
-000333 9508      	RET
-                 
-                 __DIVW21U:
-000334 2400      	CLR  R0
-000335 2411      	CLR  R1
-000336 e190      	LDI  R25,16
-                 __DIVW21U1:
-000337 0faa      	LSL  R26
-000338 1fbb      	ROL  R27
-000339 1c00      	ROL  R0
-00033a 1c11      	ROL  R1
-00033b 1a0e      	SUB  R0,R30
-00033c 0a1f      	SBC  R1,R31
-00033d f418      	BRCC __DIVW21U2
-00033e 0e0e      	ADD  R0,R30
-00033f 1e1f      	ADC  R1,R31
-000340 c001      	RJMP __DIVW21U3
-                 __DIVW21U2:
-000341 60a1      	SBR  R26,1
-                 __DIVW21U3:
-000342 959a      	DEC  R25
-000343 f799      	BRNE __DIVW21U1
-000344 01fd      	MOVW R30,R26
-000345 01d0      	MOVW R26,R0
-000346 9508      	RET
-                 
-                 __DIVW21:
-000347 d004      	RCALL __CHKSIGNW
-000348 dfeb      	RCALL __DIVW21U
-000349 f40e      	BRTC __DIVW211
-00034a dfd8      	RCALL __ANEGW1
-                 __DIVW211:
-00034b 9508      	RET
-                 
-                 __CHKSIGNW:
-00034c 94e8      	CLT
-00034d fff7      	SBRS R31,7
-00034e c002      	RJMP __CHKSW1
-00034f dfd3      	RCALL __ANEGW1
-000350 9468      	SET
-                 __CHKSW1:
-000351 ffb7      	SBRS R27,7
-000352 c006      	RJMP __CHKSW2
-000353 95a0      	COM  R26
-000354 95b0      	COM  R27
-000355 9611      	ADIW R26,1
-000356 f800      	BLD  R0,0
-000357 9403      	INC  R0
-000358 fa00      	BST  R0,0
-                 __CHKSW2:
-000359 9508      	RET
-                 
-                 __SWAPW12:
-00035a 2e1b      	MOV  R1,R27
-00035b 2fbf      	MOV  R27,R31
-00035c 2df1      	MOV  R31,R1
-                 
-                 __SWAPB12:
-00035d 2e1a      	MOV  R1,R26
-00035e 2fae      	MOV  R26,R30
-00035f 2de1      	MOV  R30,R1
-000360 9508      	RET
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -3277,19 +2442,7 @@ ATmega328P register use summary:
 r0 :  16 r1 :   9 r2 :   0 r3 :  18 r4 :  18 r5 :   5 r6 :   5 r7 :   6 
 r8 :   6 r9 :   6 r10:   6 r11:   4 r12:   4 r13:   4 r14:   4 r15:   0 
 r16:   0 r17:   0 r18:   0 r19:   0 r20:   0 r21:   0 r22:  11 r23:   8 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 r24:  14 r25:  11 r26:  66 r27:  42 r28:   3 r29:   1 r30: 241 r31:  95 
-=======
-r24:  16 r25:  13 r26:  68 r27:  44 r28:   3 r29:   1 r30: 253 r31:  95 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-r24:  16 r25:  13 r26:  68 r27:  44 r28:   3 r29:   1 r30: 253 r31:  95 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-r24:  16 r25:  13 r26:  68 r27:  44 r28:   3 r29:   1 r30: 253 r31:  95 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 x  :   2 y  :  22 z  :   1 
 Registers used: 27 out of 35 (77.1%)
 
@@ -3304,19 +2457,7 @@ cbi   :  17 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0
 clr   :   9 cls   :   0 clt   :   1 clv   :   0 clz   :   0 com   :   2 
 cp    :  16 cpc   :  34 cpi   :   7 cpse  :   0 dec   :   3 des   :   0 
 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 in    :   1 inc   :   1 jmp   :  27 ld    :  10 ldd   :   4 ldi   : 119 
-=======
-in    :   1 inc   :   1 jmp   :  27 ld    :  10 ldd   :   4 ldi   : 125 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-in    :   1 inc   :   1 jmp   :  27 ld    :  10 ldd   :   4 ldi   : 125 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-in    :   1 inc   :   1 jmp   :  27 ld    :  10 ldd   :   4 ldi   : 125 
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 lds   :  63 lpm   :   2 lsl   :   1 lsr   :   0 mov   :  40 movw  :   6 
 mul   :   3 muls  :   0 mulsu :   0 neg   :   2 nop   :   0 or    :   0 
 ori   :   3 out   :  25 pop   :   2 push  :   2 rcall :  48 ret   :  17 
@@ -3331,19 +2472,7 @@ Instructions used: 57 out of 116 (49.1%)
 ATmega328P memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 [.cseg] 0x000000 0x0006b4   1706     10   1716   32768   5.2%
-=======
-[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
-=======
-[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
->>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 [.dseg] 0x000100 0x000319      0     25     25    2048   1.2%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

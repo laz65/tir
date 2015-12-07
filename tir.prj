@@ -30,7 +30,11 @@ EditorPanel1=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp1=1200059276
+<<<<<<< HEAD
+TimeStamp1=1200061027
+=======
+TimeStamp1=1200055150
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 TimeStamp1=1200055150
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -142,8 +146,13 @@ LinkageInformationPresent=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-COFFileTimeStamp=1200059277
-Build=90
+<<<<<<< HEAD
+COFFileTimeStamp=1200061261
+Build=91
+=======
+COFFileTimeStamp=1200055216
+Build=89
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 COFFileTimeStamp=1200055216
 Build=89
@@ -260,7 +269,11 @@ COFFileTimeStamp=-1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Build=90
+<<<<<<< HEAD
+Build=91
+=======
+Build=89
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 Build=89
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -350,7 +363,11 @@ VerifyProgramming=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ProgrammingCounter=19
+=======
+ProgrammingCounter=18
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 ProgrammingCounter=18
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -381,9 +398,12 @@ L16=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L17=Build: 89
+<<<<<<< HEAD
+L17=Build: 90
 L18=1231 line(s) compiled
 =======
+=======
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
@@ -412,7 +432,11 @@ L36=EEPROM usage: 0 byte(s), 0,0% of EEPROM
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 L37=Program size: 858 words (1716 bytes), 5,2% of FLASH
+=======
+L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -431,7 +455,11 @@ L3=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2268): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
+=======
+L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2254): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2254): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -448,7 +476,11 @@ L8=---------------------------------------------------------------
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 L9=[.cseg] 0x000000 0x0006b4   1706     10   1716   32768   5.2%
+=======
+L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -470,7 +502,11 @@ ScrollPosY=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200060808
+<<<<<<< HEAD
+TimeStamp=1200061263
+=======
+TimeStamp=1200055250
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 TimeStamp=1200055250
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -487,11 +523,19 @@ F1=tir.c
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200059276
-Row=66
-Column=28
+<<<<<<< HEAD
+TimeStamp=1200061027
+Row=0
+Column=0
 ScrollPosX=0
-ScrollPosY=47
+ScrollPosY=285
+=======
+TimeStamp=1200055150
+Row=137
+Column=71
+ScrollPosX=0
+ScrollPosY=118
+>>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 =======
 TimeStamp=1200055150
 Row=137
