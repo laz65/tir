@@ -1,17 +1,15 @@
 RAM Allocation [bytes]
 Variable                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-m70                                                                               0x0300       2
-pm70                                                                              0x0302       2
-m80                                                                               0x0304       2
-pm80                                                                              0x0306       2
-m90                                                                               0x0308       2
-pm90                                                                              0x030A       2
-m100                                                                              0x030C       2
-pm100                                                                             0x030E       2
-timer                                                                             0x0310       4
-timer2                                                                            0x0314       4
-kol                                                                               0x0318       1
+m80                                                                               0x0300       2
+pm80                                                                              0x0302       2
+m90                                                                               0x0304       2
+pm90                                                                              0x0306       2
+m100                                                                              0x0308       2
+pm100                                                                             0x030A       2
+timer                                                                             0x030C       4
+timer2                                                                            0x0310       4
+kol                                                                               0x0314       1
 
 EEPROM Allocation [bytes]
 Variable                                                                          Address   Size
@@ -22,10 +20,10 @@ Variable                                                                        
 ------------------------------------------------------------------------------------------------
 a                                                                                 R3,R4        2
 sum                                                                               R5,R6        2
-m                                                                                 R7,R8        2
-pm                                                                                R9,R10       2
-m60                                                                               R11,R12      2
-pm60                                                                              R13,R14      2
+m60                                                                               R7,R8        2
+pm60                                                                              R9,R10       2
+m70                                                                               R11,R12      2
+pm70                                                                              R13,R14      2
 
 FLASH Allocation [words]
 Function                                                                          Address   Size
@@ -33,4 +31,4 @@ Function                                                                        
 timer0_ovf_isr                                                                    0x00056     53
 read_adc                                                                          0x0008B     28
 vivod                                                                             0x000A7     95
-main                                                                              0x00106    375
+main                                                                              0x00106    356
