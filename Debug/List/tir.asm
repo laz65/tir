@@ -1345,7 +1345,9 @@ _0x3:
 _timer2_ovf_isr:
 ; .FSTART _timer2_ovf_isr
 	ST   -Y,R26
+	ST   -Y,R27
 	ST   -Y,R30
+	ST   -Y,R31
 	IN   R30,SREG
 	ST   -Y,R30
 ; 0000 004F // Place your code here
@@ -1369,13 +1371,18 @@ _timer2_ovf_isr:
 	RJMP _0x9
 _0x6:
 ; 0000 0057     {
-; 0000 0058         if(tt1++ > 200)
+; 0000 0058         if(tt1++ > (2*a))
 	LDS  R26,_tt1
 	SUBI R26,-LOW(1)
 	STS  _tt1,R26
 	SUBI R26,LOW(1)
-	CPI  R26,LOW(0xC9)
-	BRLO _0xA
+	__GETW1R 3,4
+	LSL  R30
+	ROL  R31
+	LDI  R27,0
+	CP   R30,R26
+	CPC  R31,R27
+	BRSH _0xA
 ; 0000 0059         {
 ; 0000 005A             tt1 = 0;
 	LDI  R30,LOW(0)
@@ -1386,14 +1393,14 @@ _0x6:
 ; 0000 005C             flag_vikl = 1;
 	SBI  0x1E,1
 ; 0000 005D         }
-; 0000 005E         if (flag_vikl) if (tr2-- == 0)
+; 0000 005E         if (flag_vikl) if (--tr2 == 0)
 _0xA:
 	SBIS 0x1E,1
 	RJMP _0xD
 	LDS  R30,_tr2
 	SUBI R30,LOW(1)
 	STS  _tr2,R30
-	SUBI R30,-LOW(1)
+	CPI  R30,0
 	BRNE _0xE
 ; 0000 005F         {
 ; 0000 0060                 flag_vikl = 0;
@@ -1416,7 +1423,9 @@ _0x9:
 ; 0000 0068 }
 	LD   R30,Y+
 	OUT  SREG,R30
+	LD   R31,Y+
 	LD   R30,Y+
+	LD   R27,Y+
 	LD   R26,Y+
 	RETI
 ; .FEND
@@ -1428,17 +1437,18 @@ _0x9:
 ; 0000 006E {
 _vivod:
 ; .FSTART _vivod
-; 0000 006F     if(timer < 100)
+; 0000 006F     while(timer < 100);
 	ST   -Y,R27
 	ST   -Y,R26
 ;	vhod -> Y+0
+_0x13:
 	RCALL SUBOPT_0x0
 	__CPD2N 0x64
-	BRSH _0x13
+	BRLO _0x13
 ; 0000 0070     {
 ; 0000 0071         if (!p_1)
 	SBIC 0x3,0
-	RJMP _0x14
+	RJMP _0x16
 ; 0000 0072         {
 ; 0000 0073             r_3 = 0;
 	CBI  0x5,2
@@ -1453,18 +1463,17 @@ _vivod:
 ; 0000 0078         }
 ; 0000 0079 
 ; 0000 007A     }
-_0x14:
-; 0000 007B     else
-	RJMP _0x1D
-_0x13:
-; 0000 007C     if(timer < 200)
+_0x16:
+; 0000 007B //    else
+; 0000 007C     while(timer < 200);
+_0x1F:
 	RCALL SUBOPT_0x0
 	__CPD2N 0xC8
-	BRSH _0x1E
+	BRLO _0x1F
 ; 0000 007D     {
 ; 0000 007E         if (!p_2)
 	SBIC 0x3,1
-	RJMP _0x1F
+	RJMP _0x22
 ; 0000 007F         {
 ; 0000 0080             r_1 = 0;
 	CBI  0x5,0
@@ -1484,18 +1493,17 @@ _0x13:
 ; 0000 0085         }
 ; 0000 0086 
 ; 0000 0087     }
-_0x1F:
-; 0000 0088     else
-	RJMP _0x28
-_0x1E:
-; 0000 0089     if(timer<300)
+_0x22:
+; 0000 0088 //    else
+; 0000 0089     while(timer < 300);
+_0x2B:
 	RCALL SUBOPT_0x0
 	__CPD2N 0x12C
-	BRSH _0x29
+	BRLO _0x2B
 ; 0000 008A     {
 ; 0000 008B         if (!p_3)
 	SBIC 0x3,2
-	RJMP _0x2A
+	RJMP _0x2E
 ; 0000 008C         {
 ; 0000 008D             r_2 = 0;
 	CBI  0x5,1
@@ -1533,10 +1541,8 @@ _0x1E:
 ; 0000 0093 
 ; 0000 0094 
 ; 0000 0095     }
-_0x2A:
-; 0000 0096     else
-	RJMP _0x33
-_0x29:
+_0x2E:
+; 0000 0096 //    else
 ; 0000 0097     {
 ; 0000 0098         timer = 0;
 	LDI  R30,LOW(0)
@@ -1545,9 +1551,6 @@ _0x29:
 	STS  _timer+2,R30
 	STS  _timer+3,R30
 ; 0000 0099     }
-_0x33:
-_0x28:
-_0x1D:
 ; 0000 009A }
 	ADIW R28,2
 	RET
@@ -1781,10 +1784,10 @@ _main:
 ; 0000 012E         timer2 = 0;
 	RCALL SUBOPT_0x4
 ; 0000 012F         while (timer2 < 300000);
-_0x3C:
+_0x3F:
 	RCALL SUBOPT_0x5
 	RCALL SUBOPT_0x6
-	BRLO _0x3C
+	BRLO _0x3F
 ; 0000 0130         OCR2A=0xFF;
 	LDI  R30,LOW(255)
 	STS  179,R30
@@ -1810,7 +1813,7 @@ _0x3C:
 	LDI  R30,LOW(10)
 	STS  _kol,R30
 ; 0000 013B while (1)
-_0x3F:
+_0x42:
 ; 0000 013C       {
 ; 0000 013D       // Place your code here
 ; 0000 013E         m100 = read_adc(0);
@@ -1844,18 +1847,18 @@ _0x3F:
 	LDS  R31,_m100+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x42
+	BRSH _0x45
 	LDI  R30,LOW(100)
 	LDI  R31,HIGH(100)
 	__PUTW1R 3,4
-	RJMP _0x43
-_0x42:
+	RJMP _0x46
+_0x45:
 	LDS  R30,_m100
 	LDS  R31,_m100+1
 	STS  _pm100,R30
 	STS  _pm100+1,R31
 ; 0000 0144         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
-_0x43:
+_0x46:
 	LDS  R26,_pm90
 	LDS  R27,_pm90+1
 	SBIW R26,3
@@ -1863,28 +1866,28 @@ _0x43:
 	LDS  R31,_m90+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x44
+	BRSH _0x47
 	LDI  R30,LOW(100)
 	LDI  R31,HIGH(100)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x45
+	BRNE _0x48
 	LDI  R30,LOW(90)
 	LDI  R31,HIGH(90)
-	RJMP _0x73
-_0x45:
+	RJMP _0x76
+_0x48:
 	LDI  R30,LOW(80)
 	LDI  R31,HIGH(80)
-_0x73:
+_0x76:
 	__PUTW1R 3,4
-	RJMP _0x47
-_0x44:
+	RJMP _0x4A
+_0x47:
 	LDS  R30,_m90
 	LDS  R31,_m90+1
 	STS  _pm90,R30
 	STS  _pm90+1,R31
 ; 0000 0145         if((pm80 - 4) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
-_0x47:
+_0x4A:
 	LDS  R26,_pm80
 	LDS  R27,_pm80+1
 	SBIW R26,4
@@ -1892,79 +1895,79 @@ _0x47:
 	LDS  R31,_m80+1
 	CP   R30,R26
 	CPC  R31,R27
-	BRSH _0x48
+	BRSH _0x4B
 	LDI  R30,LOW(80)
 	LDI  R31,HIGH(80)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x49
+	BRNE _0x4C
 	LDI  R30,LOW(70)
 	LDI  R31,HIGH(70)
-	RJMP _0x74
-_0x49:
+	RJMP _0x77
+_0x4C:
 	LDI  R30,LOW(60)
 	LDI  R31,HIGH(60)
-_0x74:
+_0x77:
 	__PUTW1R 3,4
-	RJMP _0x4B
-_0x48:
+	RJMP _0x4E
+_0x4B:
 	LDS  R30,_m80
 	LDS  R31,_m80+1
 	STS  _pm80,R30
 	STS  _pm80+1,R31
 ; 0000 0146         if((pm70 - 5) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
-_0x4B:
+_0x4E:
 	__GETW2R 13,14
 	SBIW R26,5
 	CP   R11,R26
 	CPC  R12,R27
-	BRSH _0x4C
+	BRSH _0x4F
 	LDI  R30,LOW(60)
 	LDI  R31,HIGH(60)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x4D
+	BRNE _0x50
 	LDI  R30,LOW(50)
 	LDI  R31,HIGH(50)
-	RJMP _0x75
-_0x4D:
+	RJMP _0x78
+_0x50:
 	LDI  R30,LOW(40)
 	LDI  R31,HIGH(40)
-_0x75:
+_0x78:
 	__PUTW1R 3,4
-	RJMP _0x4F
-_0x4C:
+	RJMP _0x52
+_0x4F:
 	__MOVEWRR 13,14,11,12
 ; 0000 0147         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;
-_0x4F:
+_0x52:
 	__GETW2R 9,10
 	SBIW R26,7
 	CP   R7,R26
 	CPC  R8,R27
-	BRSH _0x50
+	BRSH _0x53
 	LDI  R30,LOW(40)
 	LDI  R31,HIGH(40)
 	CP   R30,R3
 	CPC  R31,R4
-	BRNE _0x51
+	BRNE _0x54
 	LDI  R30,LOW(30)
 	LDI  R31,HIGH(30)
-	RJMP _0x76
-_0x51:
+	RJMP _0x79
+_0x54:
 	LDI  R30,LOW(20)
 	LDI  R31,HIGH(20)
-_0x76:
+_0x79:
 	__PUTW1R 3,4
-	RJMP _0x53
-_0x50:
+	RJMP _0x56
+_0x53:
 	__MOVEWRR 9,10,7,8
 ; 0000 0148         if (a > 0)
-_0x53:
+_0x56:
 	CLR  R0
 	CP   R0,R3
 	CPC  R0,R4
 	BRLO PC+2
-	RJMP _0x54
+	RJMP _0x57
 ; 0000 0149         {
 ; 0000 014A             flag_zvuk = 0;
 	CBI  0x1E,0
@@ -1980,14 +1983,14 @@ _0x53:
 ; 0000 014E             timer2 = 0;
 	RCALL SUBOPT_0x4
 ; 0000 014F             while (timer2 < 150000) vivod(a);
-_0x57:
+_0x5A:
 	RCALL SUBOPT_0x5
 	__CPD2N 0x249F0
-	BRSH _0x59
+	BRSH _0x5C
 	__GETW2R 3,4
 	RCALL _vivod
-	RJMP _0x57
-_0x59:
+	RJMP _0x5A
+_0x5C:
 ; 0000 0150 sum += a;
 	__ADDWRR 5,6,3,4
 ; 0000 0151             a = 0;
@@ -2011,7 +2014,7 @@ _0x59:
 ; 0000 0158             if (kol == 0)
 	LDS  R30,_kol
 	CPI  R30,0
-	BRNE _0x62
+	BRNE _0x65
 ; 0000 0159             {
 ; 0000 015A                 TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
 	LDI  R30,LOW(3)
@@ -2029,22 +2032,22 @@ _0x59:
 	LDI  R31,HIGH(1000)
 	CP   R30,R5
 	CPC  R31,R6
-	BRNE _0x65
+	BRNE _0x68
 	LDI  R30,LOW(999)
 	LDI  R31,HIGH(999)
 	__PUTW1R 5,6
 ; 0000 015E                 timer2 = 0;
-_0x65:
+_0x68:
 	RCALL SUBOPT_0x4
 ; 0000 015F                 while (timer2 < 300000) vivod(sum);
-_0x66:
+_0x69:
 	RCALL SUBOPT_0x5
 	RCALL SUBOPT_0x6
-	BRSH _0x68
+	BRSH _0x6B
 	__GETW2R 5,6
 	RCALL _vivod
-	RJMP _0x66
-_0x68:
+	RJMP _0x69
+_0x6B:
 ; 0000 0160 sum = 0;
 	CLR  R5
 	CLR  R6
@@ -2068,7 +2071,7 @@ _0x68:
 	RCALL SUBOPT_0x4
 ; 0000 0168             }
 ; 0000 0169             OCR2A=0xFF;
-_0x62:
+_0x65:
 	LDI  R30,LOW(255)
 	STS  179,R30
 ; 0000 016A             TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2
@@ -2077,10 +2080,10 @@ _0x62:
 ; 0000 016B             timer2 = 0;
 	RCALL SUBOPT_0x4
 ; 0000 016C             while (timer2 < 10000);
-_0x6F:
+_0x72:
 	RCALL SUBOPT_0x5
 	__CPD2N 0x2710
-	BRLO _0x6F
+	BRLO _0x72
 ; 0000 016D             TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);
 	RCALL SUBOPT_0x7
 ; 0000 016E             pm100 = read_adc(0);
@@ -2090,11 +2093,11 @@ _0x6F:
 ; 0000 0172             pm60 = read_adc(4);
 ; 0000 0173         }
 ; 0000 0174       }
-_0x54:
-	RJMP _0x3F
+_0x57:
+	RJMP _0x42
 ; 0000 0175 }
-_0x72:
-	RJMP _0x72
+_0x75:
+	RJMP _0x75
 ; .FEND
 ;
 

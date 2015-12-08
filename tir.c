@@ -85,13 +85,13 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
     }
     else 
     {
-        if(tt1++ > 200)
+        if(tt1++ > (2*a))
         {
             tt1 = 0;
             OCR2A=0xFF;
             flag_vikl = 1;
         }                        
-        if (flag_vikl) if (tr2-- == 0)
+        if (flag_vikl) if (--tr2 == 0)
         {
                 flag_vikl = 0;
                 flag_zvuk = 0;
@@ -108,7 +108,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
 
 void vivod(int vhod)
 {
-    if(timer < 100)
+    while(timer < 100);
     {    
         if (!p_1)  
         {     
@@ -120,8 +120,8 @@ void vivod(int vhod)
         }
         
     }
-    else
-    if(timer < 200)
+//    else
+    while(timer < 200);
     {
         if (!p_2)  
         {     
@@ -133,8 +133,8 @@ void vivod(int vhod)
         }
     
     }
-    else
-    if(timer<300)
+//    else
+    while(timer < 300);
     {
         if (!p_3)  
         {     
@@ -147,7 +147,7 @@ void vivod(int vhod)
     
     
     }
-    else 
+//    else 
     {
         timer = 0;
     }

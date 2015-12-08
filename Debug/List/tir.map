@@ -34,6 +34,6 @@ Function                                                                        
 ------------------------------------------------------------------------------------------------
 timer0_ovf_isr                                                                    0x00056     53
 read_adc                                                                          0x0008B     28
-timer2_ovf_isr                                                                    0x000A7     54
-vivod                                                                             0x000DD     95
-main                                                                              0x0013C    396
+timer2_ovf_isr                                                                    0x000A7     64
+vivod                                                                             0x000E7     92
+main                                                                              0x00143    396
