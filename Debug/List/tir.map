@@ -10,6 +10,8 @@ pm100                                                                           
 timer                                                                             0x030C       4
 timer2                                                                            0x0310       4
 kol                                                                               0x0314       1
+tt1                                                                               0x0315       1
+tt2                                                                               0x0316       1
 
 EEPROM Allocation [bytes]
 Variable                                                                          Address   Size
@@ -24,11 +26,13 @@ m60                                                                             
 pm60                                                                              R9,R10       2
 m70                                                                               R11,R12      2
 pm70                                                                              R13,R14      2
+flag_zvuk                                                                         GPIOR0.0  1bit
 
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
 timer0_ovf_isr                                                                    0x00056     53
 read_adc                                                                          0x0008B     28
-vivod                                                                             0x000A7     95
-main                                                                              0x00106    356
+timer2_ovf_isr                                                                    0x000A7     52
+vivod                                                                             0x000DB     95
+main                                                                              0x0013A    393
