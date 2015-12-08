@@ -45,8 +45,8 @@ Data Stack size         : 512
 flash unsigned char  seg[10] = {seg_g, seg_a+seg_d+seg_e+seg_f+seg_g, seg_c+seg_f, seg_e+seg_f, seg_a+seg_d+seg_e, seg_b+seg_e, seg_b, seg_d+seg_e+seg_f+seg_g, 0, seg_e};
 unsigned int a, sum, m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
 unsigned long timer, timer2;
-unsigned char kol, tt1,tt2;
-bit flag_zvuk;
+unsigned char kol, tt1, tr2;
+bit flag_zvuk, flag_vikl;
 // Timer 0 overflow interrupt service routine
 interrupt [TIM0_OVF] void timer0_ovf_isr(void)
 {
@@ -79,20 +79,27 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
 // Place your code here
     if(!flag_zvuk)
     {
-        OCR2A=0xC0;
-        flag_zvuk = 1;
+        OCR2A=0x80;
+        flag_zvuk = 1; 
+        tr2 = 201 - a*2;
     }
-    else if(tt1++ > 200)
+    else 
     {
-        tt1 = 0;
-        OCR2A=0xFF;
-        if (tt2++ > a/8)
+        if(tt1++ > 200)
         {
-            tt2 = 0;
-            flag_zvuk = 0;
+            tt1 = 0;
+            OCR2A=0xFF;
+            flag_vikl = 1;
+        }                        
+        if (flag_vikl) if (--tr2 == 0)
+        {
+                flag_vikl = 0;
+                flag_zvuk = 0;
+                tt1 = 0;
+                OCR2A=0x80;
         }
+
     }
-    
 
 }
 
@@ -222,7 +229,8 @@ OCR1BL=0x00;
 // OC2B output: Disconnected
 ASSR=(0<<EXCLK) | (0<<AS2);
 TCCR2A=(1<<COM2A1) | (1<<COM2A0) | (0<<COM2B1) | (0<<COM2B0) | (1<<WGM21) | (1<<WGM20);
-TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
+TCCR2B=(0<<WGM22) | (1<<CS22) | (0<<CS21) | (0<<CS20);
+//TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
 TCNT2=0x00;
 OCR2A=0xFF;
 OCR2B=0x00;
@@ -285,7 +293,7 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 
 // Global enable interrupts
 #asm("sei")
-        a = 200;
+        a = 0;
         r_1 = 0;
         r_2 = 0;
         r_3 = 0;    
@@ -322,7 +330,7 @@ while (1)
             flag_zvuk = 0;
             tt1 = 0;    
             TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (1<<CS00);                        
-            TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20); // ¬кл таймер 2
+            TCCR2B=(0<<WGM22) | (1<<CS22) | (0<<CS21) | (0<<CS20); // ¬кл таймер 2
             timer2 = 0;
             while (timer2 < 150000) vivod(a);    
             sum += a;
@@ -334,11 +342,12 @@ while (1)
             PORTD = seg[kol];   
             r_3 = 1;    
             if (kol == 0) 
-            {
+            {  
+                TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
                 r_3 = 0;   
+                a = sum / 10;
                 if (sum == 1000) sum = 999;
                 timer2 = 0;   
-                a = sum / 8;
                 while (timer2 < 500000) vivod(sum);
                 sum = 0;    
                 a = 0;
