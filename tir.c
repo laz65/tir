@@ -91,7 +91,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
             OCR2A=0xFF;
             flag_vikl = 1;
         }                        
-        if (flag_vikl) if (--tr2 == 0)
+        if (flag_vikl) if (tr2-- == 0)
         {
                 flag_vikl = 0;
                 flag_zvuk = 0;
@@ -300,7 +300,7 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
         PORTD = 12;   
         r_3 = 1;    
         timer2 = 0;
-        while (timer2 < 500000);        
+        while (timer2 < 300000);        
         OCR2A=0xFF;
         a = 0;
         TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2          
@@ -345,10 +345,10 @@ while (1)
             {  
                 TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
                 r_3 = 0;   
-                a = sum / 10;
+                a = (sum - 200) / 8;
                 if (sum == 1000) sum = 999;
                 timer2 = 0;   
-                while (timer2 < 500000) vivod(sum);
+                while (timer2 < 300000) vivod(sum);
                 sum = 0;    
                 a = 0;
                 r_1 = 0;

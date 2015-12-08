@@ -1386,14 +1386,14 @@ _0x6:
 ; 0000 005C             flag_vikl = 1;
 	SBI  0x1E,1
 ; 0000 005D         }
-; 0000 005E         if (flag_vikl) if (--tr2 == 0)
+; 0000 005E         if (flag_vikl) if (tr2-- == 0)
 _0xA:
 	SBIS 0x1E,1
 	RJMP _0xD
 	LDS  R30,_tr2
 	SUBI R30,LOW(1)
 	STS  _tr2,R30
-	CPI  R30,0
+	SUBI R30,-LOW(1)
 	BRNE _0xE
 ; 0000 005F         {
 ; 0000 0060                 flag_vikl = 0;
@@ -1780,7 +1780,7 @@ _main:
 	SBI  0x5,2
 ; 0000 012E         timer2 = 0;
 	RCALL SUBOPT_0x4
-; 0000 012F         while (timer2 < 500000);
+; 0000 012F         while (timer2 < 300000);
 _0x3C:
 	RCALL SUBOPT_0x5
 	RCALL SUBOPT_0x6
@@ -2018,11 +2018,11 @@ _0x59:
 	STS  177,R30
 ; 0000 015B                 r_3 = 0;
 	CBI  0x5,2
-; 0000 015C                 a = sum / 10;
-	__GETW2R 5,6
-	LDI  R30,LOW(10)
-	LDI  R31,HIGH(10)
-	CALL __DIVW21U
+; 0000 015C                 a = (sum - 200) / 8;
+	__GETW1R 5,6
+	SUBI R30,LOW(200)
+	SBCI R31,HIGH(200)
+	CALL __LSRW3
 	__PUTW1R 3,4
 ; 0000 015D                 if (sum == 1000) sum = 999;
 	LDI  R30,LOW(1000)
@@ -2036,7 +2036,7 @@ _0x59:
 ; 0000 015E                 timer2 = 0;
 _0x65:
 	RCALL SUBOPT_0x4
-; 0000 015F                 while (timer2 < 500000) vivod(sum);
+; 0000 015F                 while (timer2 < 300000) vivod(sum);
 _0x66:
 	RCALL SUBOPT_0x5
 	RCALL SUBOPT_0x6
@@ -2186,7 +2186,7 @@ SUBOPT_0x5:
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
 SUBOPT_0x6:
-	__CPD2N 0x7A120
+	__CPD2N 0x493E0
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:28 WORDS
@@ -2219,6 +2219,16 @@ __ANEGW1:
 	NEG  R31
 	NEG  R30
 	SBCI R31,0
+	RET
+
+__LSRW3:
+	LSR  R31
+	ROR  R30
+__LSRW2:
+	LSR  R31
+	ROR  R30
+	LSR  R31
+	ROR  R30
 	RET
 
 __MULW12U:

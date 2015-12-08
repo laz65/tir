@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  D:\Project\Micro\AVR\tir\Debug\List\tir.asm Tue Dec 08 21:01:50 2015
+AVRASM ver. 2.1.30  D:\Project\Micro\AVR\tir\Debug\List\tir.asm Tue Dec 08 22:30:05 2015
 
 D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1090): warning: Register r3 already defined by the .DEF directive
 D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1091): warning: Register r4 already defined by the .DEF directive
@@ -1420,14 +1420,14 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 005C             flag_vikl = 1;
 0000c6 9af1      	SBI  0x1E,1
                  ; 0000 005D         }
-                 ; 0000 005E         if (flag_vikl) if (--tr2 == 0)
+                 ; 0000 005E         if (flag_vikl) if (tr2-- == 0)
                  _0xA:
 0000c7 9bf1      	SBIS 0x1E,1
 0000c8 c00f      	RJMP _0xD
 0000c9 91e0 0316 	LDS  R30,_tr2
 0000cb 50e1      	SUBI R30,LOW(1)
 0000cc 93e0 0316 	STS  _tr2,R30
-0000ce 30e0      	CPI  R30,0
+0000ce 5fef      	SUBI R30,-LOW(1)
 0000cf f441      	BRNE _0xE
                  ; 0000 005F         {
                  ; 0000 0060                 flag_vikl = 0;
@@ -1564,10 +1564,10 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 0090             PORTD = seg[vhod  - (vhod/100)*100 - ((vhod / 10) - (vhod/100)*10)*10];
 000114 e6a4      	LDI  R26,LOW(100)
 000115 e0b0      	LDI  R27,HIGH(100)
-000116 940e 0334 	CALL __MULW12
+000116 940e 033b 	CALL __MULW12
 000118 81a8      	LD   R26,Y
 000119 81b9      	LDD  R27,Y+1
-00011a 940e 035f 	CALL __SWAPW12
+00011a 940e 0366 	CALL __SWAPW12
 00011c 1bea      	SUB  R30,R26
 00011d 0bfb      	SBC  R31,R27
 00011e 93ff      	PUSH R31
@@ -1578,10 +1578,10 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 000123 0bbf      	SBC  R27,R31
 000124 e0ea      	LDI  R30,LOW(10)
 000125 e0f0      	LDI  R31,HIGH(10)
-000126 940e 0334 	CALL __MULW12
+000126 940e 033b 	CALL __MULW12
 000128 91af      	POP  R26
 000129 91bf      	POP  R27
-00012a 940e 035f 	CALL __SWAPW12
+00012a 940e 0366 	CALL __SWAPW12
 00012c 1bea      	SUB  R30,R26
 00012d 0bfb      	SBC  R31,R27
 00012e d1aa      	RCALL SUBOPT_0x2
@@ -1838,7 +1838,7 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0001a6 9a2a      	SBI  0x5,2
                  ; 0000 012E         timer2 = 0;
 0001a7 d148      	RCALL SUBOPT_0x4
-                 ; 0000 012F         while (timer2 < 500000);
+                 ; 0000 012F         while (timer2 < 300000);
                  _0x3C:
 0001a8 d151      	RCALL SUBOPT_0x5
 0001a9 d159      	RCALL SUBOPT_0x6
@@ -2123,14 +2123,14 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 00028a 93e0 00b1 	STS  177,R30
                  ; 0000 015B                 r_3 = 0;
 00028c 982a      	CBI  0x5,2
-                 ; 0000 015C                 a = sum / 10;
+                 ; 0000 015C                 a = (sum - 200) / 8;
                 +
-00028d 2da5     +MOV R26 , R5
-00028e 2db6     +MOV R27 , R6
-                 	__GETW2R 5,6
-00028f e0ea      	LDI  R30,LOW(10)
-000290 e0f0      	LDI  R31,HIGH(10)
-000291 940e 0339 	CALL __DIVW21U
+00028d 2de5     +MOV R30 , R5
+00028e 2df6     +MOV R31 , R6
+                 	__GETW1R 5,6
+00028f 5ce8      	SUBI R30,LOW(200)
+000290 40f0      	SBCI R31,HIGH(200)
+000291 940e 032c 	CALL __LSRW3
                 +
 000293 2e3e     +MOV R3 , R30
 000294 2e4f     +MOV R4 , R31
@@ -2150,7 +2150,7 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ; 0000 015E                 timer2 = 0;
                  _0x65:
 00029e d051      	RCALL SUBOPT_0x4
-                 ; 0000 015F                 while (timer2 < 500000) vivod(sum);
+                 ; 0000 015F                 while (timer2 < 300000) vivod(sum);
                  _0x66:
 00029f d05a      	RCALL SUBOPT_0x5
 0002a0 d062      	RCALL SUBOPT_0x6
@@ -2263,7 +2263,7 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0002d3 81b9      	LDD  R27,Y+1
 0002d4 e6e4      	LDI  R30,LOW(100)
 0002d5 e0f0      	LDI  R31,HIGH(100)
-0002d6 940e 034c 	CALL __DIVW21
+0002d6 940e 0353 	CALL __DIVW21
 0002d8 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:5 WORDS
@@ -2280,16 +2280,16 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 0002df 81b9      	LDD  R27,Y+1
 0002e0 e0ea      	LDI  R30,LOW(10)
 0002e1 e0f0      	LDI  R31,HIGH(10)
-0002e2 940e 034c 	CALL __DIVW21
+0002e2 940e 0353 	CALL __DIVW21
 0002e4 01bf      	MOVW R22,R30
 0002e5 81a8      	LD   R26,Y
 0002e6 81b9      	LDD  R27,Y+1
 0002e7 e6e4      	LDI  R30,LOW(100)
 0002e8 e0f0      	LDI  R31,HIGH(100)
-0002e9 940e 034c 	CALL __DIVW21
+0002e9 940e 0353 	CALL __DIVW21
 0002eb e0aa      	LDI  R26,LOW(10)
 0002ec e0b0      	LDI  R27,HIGH(10)
-0002ed 940e 0334 	CALL __MULW12
+0002ed 940e 033b 	CALL __MULW12
 0002ef 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:25 WORDS
@@ -2312,14 +2312,14 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
                  SUBOPT_0x6:
                 +
-000303 32a0     +CPI R26 , LOW ( 0x7A120 )
-000304 eae1     +LDI R30 , HIGH ( 0x7A120 )
+000303 3ea0     +CPI R26 , LOW ( 0x493E0 )
+000304 e9e3     +LDI R30 , HIGH ( 0x493E0 )
 000305 07be     +CPC R27 , R30
-000306 e0e7     +LDI R30 , BYTE3 ( 0x7A120 )
+000306 e0e4     +LDI R30 , BYTE3 ( 0x493E0 )
 000307 078e     +CPC R24 , R30
-000308 e0e0     +LDI R30 , BYTE4 ( 0x7A120 )
+000308 e0e0     +LDI R30 , BYTE4 ( 0x493E0 )
 000309 079e     +CPC R25 , R30
-                 	__CPD2N 0x7A120
+                 	__CPD2N 0x493E0
 00030a 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:28 WORDS
@@ -2360,84 +2360,94 @@ D:\Project\Micro\AVR\tir\Debug\List\tir.asm(1101): warning: Register r14 already
 00032a 40f0      	SBCI R31,0
 00032b 9508      	RET
                  
+                 __LSRW3:
+00032c 95f6      	LSR  R31
+00032d 95e7      	ROR  R30
+                 __LSRW2:
+00032e 95f6      	LSR  R31
+00032f 95e7      	ROR  R30
+000330 95f6      	LSR  R31
+000331 95e7      	ROR  R30
+000332 9508      	RET
+                 
                  __MULW12U:
-00032c 9ffa      	MUL  R31,R26
-00032d 2df0      	MOV  R31,R0
-00032e 9feb      	MUL  R30,R27
-00032f 0df0      	ADD  R31,R0
-000330 9fea      	MUL  R30,R26
-000331 2de0      	MOV  R30,R0
-000332 0df1      	ADD  R31,R1
-000333 9508      	RET
+000333 9ffa      	MUL  R31,R26
+000334 2df0      	MOV  R31,R0
+000335 9feb      	MUL  R30,R27
+000336 0df0      	ADD  R31,R0
+000337 9fea      	MUL  R30,R26
+000338 2de0      	MOV  R30,R0
+000339 0df1      	ADD  R31,R1
+00033a 9508      	RET
                  
                  __MULW12:
-000334 d01c      	RCALL __CHKSIGNW
-000335 dff6      	RCALL __MULW12U
-000336 f40e      	BRTC __MULW121
-000337 dff0      	RCALL __ANEGW1
+00033b d01c      	RCALL __CHKSIGNW
+00033c dff6      	RCALL __MULW12U
+00033d f40e      	BRTC __MULW121
+00033e dfe9      	RCALL __ANEGW1
                  __MULW121:
-000338 9508      	RET
+00033f 9508      	RET
                  
                  __DIVW21U:
-000339 2400      	CLR  R0
-00033a 2411      	CLR  R1
-00033b e190      	LDI  R25,16
+000340 2400      	CLR  R0
+000341 2411      	CLR  R1
+000342 e190      	LDI  R25,16
                  __DIVW21U1:
-00033c 0faa      	LSL  R26
-00033d 1fbb      	ROL  R27
-00033e 1c00      	ROL  R0
-00033f 1c11      	ROL  R1
-000340 1a0e      	SUB  R0,R30
-000341 0a1f      	SBC  R1,R31
-000342 f418      	BRCC __DIVW21U2
-000343 0e0e      	ADD  R0,R30
-000344 1e1f      	ADC  R1,R31
-000345 c001      	RJMP __DIVW21U3
+000343 0faa      	LSL  R26
+000344 1fbb      	ROL  R27
+000345 1c00      	ROL  R0
+000346 1c11      	ROL  R1
+000347 1a0e      	SUB  R0,R30
+000348 0a1f      	SBC  R1,R31
+000349 f418      	BRCC __DIVW21U2
+00034a 0e0e      	ADD  R0,R30
+00034b 1e1f      	ADC  R1,R31
+00034c c001      	RJMP __DIVW21U3
                  __DIVW21U2:
-000346 60a1      	SBR  R26,1
+00034d 60a1      	SBR  R26,1
                  __DIVW21U3:
-000347 959a      	DEC  R25
-000348 f799      	BRNE __DIVW21U1
-000349 01fd      	MOVW R30,R26
-00034a 01d0      	MOVW R26,R0
-00034b 9508      	RET
+00034e 959a      	DEC  R25
+00034f f799      	BRNE __DIVW21U1
+000350 01fd      	MOVW R30,R26
+000351 01d0      	MOVW R26,R0
+000352 9508      	RET
                  
                  __DIVW21:
-00034c d004      	RCALL __CHKSIGNW
-00034d dfeb      	RCALL __DIVW21U
-00034e f40e      	BRTC __DIVW211
-00034f dfd8      	RCALL __ANEGW1
+000353 d004      	RCALL __CHKSIGNW
+000354 dfeb      	RCALL __DIVW21U
+000355 f40e      	BRTC __DIVW211
+000356 dfd1      	RCALL __ANEGW1
                  __DIVW211:
-000350 9508      	RET
+000357 9508      	RET
                  
                  __CHKSIGNW:
-000351 94e8      	CLT
-000352 fff7      	SBRS R31,7
-000353 c002      	RJMP __CHKSW1
-000354 dfd3      	RCALL __ANEGW1
-000355 9468      	SET
+000358 94e8      	CLT
+000359 fff7      	SBRS R31,7
+00035a c002      	RJMP __CHKSW1
+00035b dfcc      	RCALL __ANEGW1
+00035c 9468      	SET
                  __CHKSW1:
-000356 ffb7      	SBRS R27,7
-000357 c006      	RJMP __CHKSW2
-000358 95a0      	COM  R26
-000359 95b0      	COM  R27
-00035a 9611      	ADIW R26,1
-00035b f800      	BLD  R0,0
-00035c 9403      	INC  R0
-00035d fa00      	BST  R0,0
+00035d ffb7      	SBRS R27,7
+00035e c006      	RJMP __CHKSW2
+00035f 95a0      	COM  R26
+000360 95b0      	COM  R27
+000361 9611      	ADIW R26,1
+000362 f800      	BLD  R0,0
+000363 9403      	INC  R0
+000364 fa00      	BST  R0,0
                  __CHKSW2:
-00035e 9508      	RET
+000365 9508      	RET
                  
                  __SWAPW12:
-00035f 2e1b      	MOV  R1,R27
-000360 2fbf      	MOV  R27,R31
-000361 2df1      	MOV  R31,R1
+000366 2e1b      	MOV  R1,R27
+000367 2fbf      	MOV  R27,R31
+000368 2df1      	MOV  R31,R1
                  
                  __SWAPB12:
-000362 2e1a      	MOV  R1,R26
-000363 2fae      	MOV  R26,R30
-000364 2de1      	MOV  R30,R1
-000365 9508      	RET
+000369 2e1a      	MOV  R1,R26
+00036a 2fae      	MOV  R26,R30
+00036b 2de1      	MOV  R30,R1
+00036c 9508      	RET
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -2461,7 +2471,7 @@ ATmega328P register use summary:
 r0 :  18 r1 :   9 r2 :   0 r3 :  18 r4 :  17 r5 :   6 r6 :   6 r7 :   3 
 r8 :   3 r9 :   3 r10:   3 r11:   3 r12:   3 r13:   3 r14:   3 r15:   0 
 r16:   0 r17:   0 r18:   0 r19:   0 r20:   0 r21:   0 r22:  11 r23:   8 
-r24:  14 r25:  11 r26:  73 r27:  41 r28:   3 r29:   1 r30: 275 r31:  85 
+r24:  14 r25:  11 r26:  72 r27:  40 r28:   3 r29:   1 r30: 279 r31:  89 
 x  :   2 y  :  28 z  :   2 
 Registers used: 27 out of 35 (77.1%)
 
@@ -2474,24 +2484,24 @@ brlt  :   0 brmi  :   0 brne  :  11 brpl  :   0 brsh  :  10 brtc  :   2
 brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   1 call  :   9 
 cbi   :  20 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0 
 clr   :  15 cls   :   0 clt   :   1 clv   :   0 clz   :   0 com   :   2 
-cp    :  11 cpc   :  29 cpi   :   9 cpse  :   0 dec   :   3 des   :   0 
+cp    :  11 cpc   :  29 cpi   :   8 cpse  :   0 dec   :   3 des   :   0 
 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 
-in    :   2 inc   :   1 jmp   :  27 ld    :  13 ldd   :   4 ldi   : 134 
-lds   :  44 lpm   :   4 lsl   :   2 lsr   :   0 mov   :  45 movw  :   6 
+in    :   2 inc   :   1 jmp   :  27 ld    :  13 ldd   :   4 ldi   : 132 
+lds   :  44 lpm   :   4 lsl   :   2 lsr   :   3 mov   :  45 movw  :   6 
 mul   :   3 muls  :   0 mulsu :   0 neg   :   2 nop   :   0 or    :   0 
-ori   :   3 out   :  27 pop   :   2 push  :   2 rcall :  44 ret   :  17 
-reti  :   2 rjmp  :  26 rol   :   3 ror   :   0 sbc   :   5 sbci  :   8 
+ori   :   3 out   :  27 pop   :   2 push  :   2 rcall :  44 ret   :  18 
+reti  :   2 rjmp  :  26 rol   :   3 ror   :   3 sbc   :   5 sbci  :   9 
 sbi   :   8 sbic  :   4 sbis  :   1 sbiw  :   6 sbr   :   1 sbrc  :   0 
 sbrs  :   2 sec   :   0 seh   :   0 sei   :   1 sen   :   0 ser   :   0 
 ses   :   0 set   :   1 sev   :   0 sez   :   0 sleep :   0 spm   :   0 
-st    :  13 std   :   0 sts   :  85 sub   :   6 subi  :   7 swap  :   0 
+st    :  13 std   :   0 sts   :  85 sub   :   6 subi  :   9 swap  :   0 
 tst   :   0 wdr   :   0 
-Instructions used: 58 out of 116 (50.0%)
+Instructions used: 60 out of 116 (51.7%)
 
 ATmega328P memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0006cc   1730     10   1740   32768   5.3%
+[.cseg] 0x000000 0x0006da   1744     10   1754   32768   5.4%
 [.dseg] 0x000100 0x000317      0     23     23    2048   1.1%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

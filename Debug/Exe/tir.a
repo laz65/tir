@@ -180,7 +180,7 @@
 ;PCODE: $00000049 VOL: 0
 ;PCODE: $0000004A VOL: 0
 ; 0000 005D         }
-; 0000 005E         if (flag_vikl) if (--tr2 == 0)
+; 0000 005E         if (flag_vikl) if (tr2-- == 0)
 ;PCODE: $0000004B VOL: 0
 ;PCODE: $0000004C VOL: 0
 ;PCODE: $0000004D VOL: 0
@@ -629,7 +629,7 @@
 ; 0000 012E         timer2 = 0;
 ;PCODE: $00000137 VOL: 0
 ;PCODE: $00000138 VOL: 0
-; 0000 012F         while (timer2 < 500000);
+; 0000 012F         while (timer2 < 300000);
 ;PCODE: $00000139 VOL: 0
 ;PCODE: $0000013A VOL: 0
 ;PCODE: $0000013B VOL: 0
@@ -859,7 +859,7 @@
 ; 0000 015B                 r_3 = 0;
 ;PCODE: $000001F0 VOL: 0
 ;PCODE: $000001F1 VOL: 0
-; 0000 015C                 a = sum / 10;
+; 0000 015C                 a = (sum - 200) / 8;
 ;PCODE: $000001F2 VOL: 0
 ;PCODE: $000001F3 VOL: 0
 ;PCODE: $000001F4 VOL: 0
@@ -874,7 +874,7 @@
 ;PCODE: $000001FB VOL: 0
 ;PCODE: $000001FC VOL: 0
 ;PCODE: $000001FD VOL: 0
-; 0000 015F                 while (timer2 < 500000) vivod(sum);
+; 0000 015F                 while (timer2 < 300000) vivod(sum);
 ;PCODE: $000001FE VOL: 0
 ;PCODE: $000001FF VOL: 0
 ;PCODE: $00000200 VOL: 0

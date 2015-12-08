@@ -91,7 +91,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
             OCR2A=0xFF;
             flag_vikl = 1;
         }                        
-        if (flag_vikl) if (--tr2 == 0)
+        if (flag_vikl) if (tr2-- == 0)
         {
                 flag_vikl = 0;
                 flag_zvuk = 0;
@@ -229,7 +229,8 @@ OCR1BL=0x00;
 // OC2B output: Disconnected
 ASSR=(0<<EXCLK) | (0<<AS2);
 TCCR2A=(1<<COM2A1) | (1<<COM2A0) | (0<<COM2B1) | (0<<COM2B0) | (1<<WGM21) | (1<<WGM20);
-TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
+TCCR2B=(0<<WGM22) | (1<<CS22) | (0<<CS21) | (0<<CS20);
+//TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
 TCNT2=0x00;
 OCR2A=0xFF;
 OCR2B=0x00;
@@ -329,7 +330,7 @@ while (1)
             flag_zvuk = 0;
             tt1 = 0;    
             TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (1<<CS00);                        
-            TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20); // ¬кл таймер 2
+            TCCR2B=(0<<WGM22) | (1<<CS22) | (0<<CS21) | (0<<CS20); // ¬кл таймер 2
             timer2 = 0;
             while (timer2 < 150000) vivod(a);    
             sum += a;
@@ -341,12 +342,13 @@ while (1)
             PORTD = seg[kol];   
             r_3 = 1;    
             if (kol == 0) 
-            {
+            {  
+                TCCR2B=(0<<WGM22) | (0<<CS22) | (1<<CS21) | (1<<CS20);
                 r_3 = 0;   
                 a = sum / 10;
                 if (sum == 1000) sum = 999;
                 timer2 = 0;   
-                while (timer2 < 500000) vivod(sum);
+                while (timer2 < 300000) vivod(sum);
                 sum = 0;    
                 a = 0;
                 r_1 = 0;
