@@ -324,23 +324,58 @@ while (1)
         if((pm100 - 3) > m100) 
         {
            if((pm100 - 3) > read_adc(0)) a = 100;
-        } else pm100 = m100;
+        } 
+        else 
+        {
+            if((pm100 + 3) < m100)
+            { 
+               if((pm100 + 3) < read_adc(0)) pm100 = m100;
+            } else  pm100 = m100;
+        }
         if((pm90 - 4) > m90)
         { 
             if((pm90 - 4) > read_adc(1)) if(a==100) a= 90; else a = 80; 
-        } else pm90 = m90;
+        } 
+        else 
+        {
+            if((pm90 + 4) < m90)
+            { 
+               if((pm90 + 4) < read_adc(1)) pm90 = m90;
+            } else  pm90 = m90;
+        }
         if((pm80 - 5) > m80) 
         { 
             if((pm80 - 5) > read_adc(2)) if(a==80) a= 70; else a = 60; 
-        } else pm80 = m80;
+        } 
+        else 
+        {
+            if((pm80 + 5) < m80)
+            { 
+               if((pm80 + 5) < read_adc(2)) pm80 = m80;
+            } else  pm80 = m80;
+        }
         if((pm70 - 6) > m70) 
         { 
             if((pm70 - 6) > read_adc(3)) if(a==60) a= 50; else a = 40; 
-        } else pm70 = m70;
+        } 
+        else 
+        {
+            if((pm70 + 6) < m70)
+            { 
+               if((pm70 + 6) < read_adc(3)) pm70 = m70;
+            } else pm70 = m70;
+        }
         if((pm60 - 7) > m60) 
         { 
             if((pm60 - 7) > read_adc(4)) if(a==40) a= 30; else a = 20; 
-        } else pm60 = m60;   
+        } 
+        else 
+        {
+            if((pm60 + 7) < m60)
+            { 
+               if((pm60 + 7) < read_adc(4)) pm60 = m60;
+            } else pm60 = m60;
+        }   
         if (a > 0) 
         {   
             flag_zvuk = 0;
@@ -364,6 +399,8 @@ while (1)
                 a = (sum - 200) / 8;
                 if (sum == 1000) sum = 999;
                 timer2 = 0;   
+                while (timer2 < 150000) vivod(sum);
+                TCCR2B=(0<<WGM22) | (1<<CS22) | (0<<CS21) | (1<<CS20);
                 while (timer2 < 300000) vivod(sum);
                 sum = 0;    
                 a = 0;
