@@ -41,6 +41,7 @@ Data Stack size         : 512
 #define p_1 PINB.0
 #define p_2 PINB.1
 #define p_3 PINB.2
+#define sv PORTB.4
 
 flash unsigned char  seg[10] = {seg_g, seg_a+seg_d+seg_e+seg_f+seg_g, seg_c+seg_f, seg_e+seg_f, seg_a+seg_d+seg_e, seg_b+seg_e, seg_b, seg_d+seg_e+seg_f+seg_g, 0, seg_e};
 unsigned int a, sum, m60, pm60, m70, pm70, m80, pm80, m90, pm90, m100, pm100;
@@ -80,7 +81,8 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
     if(!flag_zvuk)
     {
         OCR2A=0x80;
-        flag_zvuk = 1; 
+        flag_zvuk = 1;
+        sv = 1; 
         tr2 = 201 - a*2;
     }
     else 
@@ -88,7 +90,8 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
         if(tt1++ > (2*a))
         {
             tt1 = 0;
-            OCR2A=0xFF;
+            OCR2A=0xFF;  
+            sv = 0;
             flag_vikl = 1;
         }                        
         if (flag_vikl) if (--tr2 == 0)
@@ -96,6 +99,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
                 flag_vikl = 0;
                 flag_zvuk = 0;
                 tt1 = 0;
+                sv = 1;
                 OCR2A=0x80;
         }
 
@@ -109,7 +113,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
 void vivod(int vhod)
 {
     while(timer < 100);
-    {    
+        
         if (!p_1)  
         {     
             r_3 = 0;
@@ -118,11 +122,9 @@ void vivod(int vhod)
             PORTD = seg[vhod / 100];
             r_1 = 1;  
         }
-        
-    }
-//    else
+            
     while(timer < 200);
-    {
+    
         if (!p_2)  
         {     
             r_1 = 0;
@@ -131,11 +133,9 @@ void vivod(int vhod)
             PORTD = seg[(vhod / 10) - (vhod/100)*10];
             r_2 = 1;
         }
-    
-    }
-//    else
+
     while(timer < 300);
-    {
+    
         if (!p_3)  
         {     
             r_2 = 0;
@@ -145,12 +145,7 @@ void vivod(int vhod)
             r_3 = 1;
         }
     
-    
-    }
-//    else 
-    {
         timer = 0;
-    }
 }
 
 void main(void)
@@ -168,7 +163,7 @@ CLKPR=(0<<CLKPCE) | (0<<CLKPS3) | (0<<CLKPS2) | (0<<CLKPS1) | (0<<CLKPS0);
 // Input/Output Ports initialization
 // Port B initialization
 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
-DDRB=(0<<DDB7) | (0<<DDB6) | (0<<DDB5) | (0<<DDB4) | (1<<DDB3) | (1<<DDB2) | (1<<DDB1) | (1<<DDB0);
+DDRB=(0<<DDB7) | (0<<DDB6) | (0<<DDB5) | (1<<DDB4) | (1<<DDB3) | (1<<DDB2) | (1<<DDB1) | (1<<DDB0);
 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T 
 PORTB=(0<<PORTB7) | (0<<PORTB6) | (0<<PORTB5) | (0<<PORTB4) | (0<<PORTB3) | (0<<PORTB2) | (0<<PORTB1) | (0<<PORTB0);
 
@@ -305,16 +300,20 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
         a = 0;
         TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2          
         TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);                  
+        r_3 = 0;
         pm100 = read_adc(0);
         pm90 = read_adc(1);
         pm80 = read_adc(2);
         pm70 = read_adc(3);
+        r_3 = 1;
         pm60 = read_adc(4);
-        PORTD = seg[0];                     
+        PORTD = seg[0]; 
+        sv = 0;                    
         kol = 10;
 while (1)
       {
       // Place your code here  
+        
         r_3 = 0;
         m100 = read_adc(0);
         m90 = read_adc(1);
@@ -323,9 +322,9 @@ while (1)
         r_3 = 1;
         m60 = read_adc(4);    
         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
-        if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
-        if((pm80 - 4) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
-        if((pm70 - 5) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
+        if((pm90 - 4) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
+        if((pm80 - 5) > m80) { if(a==80) a= 70; else a = 60; } else pm80 = m80;
+        if((pm70 - 6) > m70) { if(a==60) a= 50; else a = 40; } else pm70 = m70;
         if((pm60 - 7) > m60) { if(a==40) a= 30; else a = 20; } else pm60 = m60;   
         if (a > 0) 
         {   
@@ -362,9 +361,7 @@ while (1)
             } 
             OCR2A=0xFF;
             TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2  
-//            timer2 = 0;
-//            while (timer2 < 10000); 
-            TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);
+            TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);   
             r_3 = 0;        
             pm100 = read_adc(0);
             pm90 = read_adc(1);
@@ -372,6 +369,7 @@ while (1)
             pm70 = read_adc(3);
             r_3 = 1;            
             pm60 = read_adc(4);            
+            sv = 0;                    
         }
       }
 }

@@ -35,7 +35,7 @@ EditorPanel1=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp1=1200386638
+TimeStamp1=1200396295
 =======
 TimeStamp1=1200055150
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -161,8 +161,8 @@ LinkageInformationPresent=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-COFFileTimeStamp=1200386670
-Build=156
+COFFileTimeStamp=1200396328
+Build=168
 =======
 COFFileTimeStamp=1200055216
 Build=89
@@ -295,7 +295,7 @@ COFFileTimeStamp=-1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-Build=156
+Build=168
 =======
 Build=89
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -395,7 +395,7 @@ VerifyProgramming=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-ProgrammingCounter=44
+ProgrammingCounter=48
 =======
 ProgrammingCounter=18
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -434,8 +434,8 @@ L16=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L17=Build: 155
-L18=1242 line(s) compiled
+L17=Build: 167
+L18=1264 line(s) compiled
 =======
 =======
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -482,8 +482,8 @@ L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 L37=Program size: 865 words (1730 bytes), 5,3% of FLASH
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
 Lines=39
-L38=Program size: 874 words (1748 bytes), 5,3% of FLASH
-L39=90 words (180 bytes), 9,3% reduced by Code Compression
+L38=Program size: 945 words (1890 bytes), 5,8% of FLASH
+L39=90 words (180 bytes), 8,7% reduced by Code Compression
 [BuildInfoAssembler]
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
@@ -492,7 +492,7 @@ L3=
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L4=d:\Project\Micro\AVR\tir\Debug\List\tir.asm(2309): No EEPROM data, deleting d:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
+L4=d:\Project\Micro\AVR\tir\Debug\List\tir.asm(2399): No EEPROM data, deleting d:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 =======
 L4=F:\Project\Micro\AVR\tir\Debug\List\tir.asm(2254): No EEPROM data, deleting F:\Project\Micro\AVR\tir\Debug\Exe\tir.eep
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -513,7 +513,7 @@ L8=---------------------------------------------------------------
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-L9=[.cseg] 0x000000 0x0006d4   1738     10   1748   32768   5.3%
+L9=[.cseg] 0x000000 0x000762   1880     10   1890   32768   5.8%
 =======
 L9=[.cseg] 0x000000 0x0006c2   1720     10   1730   32768   5.3%
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -543,7 +543,7 @@ ScrollPosY=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200386677
+TimeStamp=1200396464
 =======
 TimeStamp=1200055250
 >>>>>>> 5a79a30dbdb728da5f23e01b98e029537c5af980
@@ -571,11 +571,11 @@ F1=tir.c
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-TimeStamp=1200386638
-Row=356
-Column=83
+TimeStamp=1200396295
+Row=342
+Column=40
 ScrollPosX=0
-ScrollPosY=347
+ScrollPosY=322
 =======
 TimeStamp=1200055150
 Row=137
