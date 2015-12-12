@@ -109,7 +109,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
 void vivod(int vhod)
 {
     while(timer < 100);
-    {    
+        
         if (!p_1)  
         {     
             r_3 = 0;
@@ -118,11 +118,9 @@ void vivod(int vhod)
             PORTD = seg[vhod / 100];
             r_1 = 1;  
         }
-        
-    }
-//    else
+            
     while(timer < 200);
-    {
+    
         if (!p_2)  
         {     
             r_1 = 0;
@@ -131,11 +129,9 @@ void vivod(int vhod)
             PORTD = seg[(vhod / 10) - (vhod/100)*10];
             r_2 = 1;
         }
-    
-    }
-//    else
+
     while(timer < 300);
-    {
+    
         if (!p_3)  
         {     
             r_2 = 0;
@@ -145,12 +141,7 @@ void vivod(int vhod)
             r_3 = 1;
         }
     
-    
-    }
-//    else 
-    {
         timer = 0;
-    }
 }
 
 void main(void)
@@ -305,10 +296,12 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
         a = 0;
         TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2          
         TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);                  
+        r_3 = 0;
         pm100 = read_adc(0);
         pm90 = read_adc(1);
         pm80 = read_adc(2);
         pm70 = read_adc(3);
+        r_3 = 1;
         pm60 = read_adc(4);
         PORTD = seg[0];                     
         kol = 10;
@@ -362,8 +355,6 @@ while (1)
             } 
             OCR2A=0xFF;
             TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2  
-//            timer2 = 0;
-//            while (timer2 < 10000); 
             TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);
             r_3 = 0;        
             pm100 = read_adc(0);
