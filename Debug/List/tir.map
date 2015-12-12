@@ -36,4 +36,4 @@ timer0_ovf_isr                                                                  
 read_adc                                                                          0x0008B     28
 timer2_ovf_isr                                                                    0x000A7     64
 vivod                                                                             0x000E7     92
-main                                                                              0x00143    396
+main                                                                              0x00143    400

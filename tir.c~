@@ -85,7 +85,7 @@ interrupt [TIM2_OVF] void timer2_ovf_isr(void)
     }
     else 
     {
-        if(tt1++ > 200)
+        if(tt1++ > (2*a))
         {
             tt1 = 0;
             OCR2A=0xFF;
@@ -315,10 +315,12 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 while (1)
       {
       // Place your code here  
+        r_3 = 0;
         m100 = read_adc(0);
         m90 = read_adc(1);
         m80 = read_adc(2);
         m70 = read_adc(3);
+        r_3 = 1;
         m60 = read_adc(4);    
         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;

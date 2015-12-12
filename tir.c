@@ -315,10 +315,12 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 while (1)
       {
       // Place your code here  
+        r_3 = 0;
         m100 = read_adc(0);
         m90 = read_adc(1);
         m80 = read_adc(2);
         m70 = read_adc(3);
+        r_3 = 1;
         m60 = read_adc(4);    
         if((pm100 - 3) > m100) a = 100; else pm100 = m100;
         if((pm90 - 3) > m90) { if(a==100) a= 90; else a = 80; } else pm90 = m90;
@@ -360,13 +362,15 @@ while (1)
             } 
             OCR2A=0xFF;
             TCCR2B=(0<<WGM22) | (0<<CS22) | (0<<CS21) | (0<<CS20);//Выкл таймер 2  
-            timer2 = 0;
-            while (timer2 < 10000);         
+//            timer2 = 0;
+//            while (timer2 < 10000); 
             TCCR0B=(0<<WGM02) | (0<<CS02) | (0<<CS01) | (0<<CS00);
+            r_3 = 0;        
             pm100 = read_adc(0);
             pm90 = read_adc(1);
             pm80 = read_adc(2);
             pm70 = read_adc(3);
+            r_3 = 1;            
             pm60 = read_adc(4);            
         }
       }
